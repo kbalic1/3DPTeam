@@ -160,3 +160,7 @@ td:nth-child(3){
 
     border-radius: 3px;
 }
+
+#navDiv{
+	height: 12%;
+}
