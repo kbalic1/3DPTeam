@@ -1,0 +1,17 @@
+#contactSection{
+	/*margin:0;
+	padding:0; */
+}
+
+#contactSection .container{
+	padding: 20px;
+	width:60%; 
+	background-color: #F05F40;
+	border-radius: 20px;
+	-webkit-box-shadow: 10px 30px 130px rgba(91,192,222,0.8);
+}
+
+body {
+
+	background-color: #E2E2E2;
+}

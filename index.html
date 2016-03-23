@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>3D-Platforma</title>
+
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="css/creative.css" type="text/css">
+    <link rel="stylesheet" href="css/logo.css" type="text/css">
+
+    <script src="js/three.js"></script>
+  
+
+
+
+</head>
+
+<body >
+
+    <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
+        <div class="container-fluid">
+
+            <div class="navbar-header">
+                <div class=" navbar-brand  stage" >
+                  <div class=" cube" >
+                    <figure class="back"></figure>
+                    <figure class="top"></figure>
+                    <figure class="bottom"></figure>
+                    <figure class="left"></figure>
+                    <figure class="right"></figure>
+                    <figure class="front"><div>3DP</div></figure>
+                  </div>
+                </div>
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                
+                <a class="navbar-brand page-scroll" href="index.html">3D Platforma</a>
+            </div>
+
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                  
+                    <li>
+                        <a class="page-scroll" href="signup.html">Sign Up</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="tableAndLinks.html">Info</a>
+                    </li>
+                    <li>
+                        <a class="page-scroll" href="kontakt.html">Kontakt</a>
+                    </li>
+                </ul>
+            </div>
+           
+        </div>
+        
+    </nav>
+
+
+    <div class="header-main">
+      
+
+        <div class="header-sadrzaj" >
+
+              <div class="wellcomeModel" id="wellcomeModelDiv"> </div>
+              <div class="infoDiv">
+
+                 <p class="loginTekst">Prijavi se 3DP računom</p>
+                 <button  id="login" class="btn btn-primary btn-xl page-scroll" data-toggle="modal" data-target="#myModal" >Prijavi se!</button>
+                 <br/>
+                 <p>ILI</p>
+                  <a href="signup.html" id="signup" class="btn btn-primary btn-xl page-scroll">Registruj se!</a>
+                  <p class="signUptekst">na najveću domaću 3D web platformu</p>
+
+             </div>
+              <hr class="ispod"/>
+        </div>
+
+        <div class="header-footer">
+            <h2 > Prvi put ste ovde? Kliknite na ovaj link za više detalja.</h2> 
+            <a href="javascript:Uskoro()"> 3D-Detaljnije</a>
+        </div>
+
+
+    </div>
+   <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
+
+    <!-- Modal content-->
+    <div class="modal-content">
+    
+      <div class="modal-body">
+          <form role="form" novalidate>
+                    <div class=" text-center">
+                        
+                        <div class="form-group">
+                            <label for="InputName">Korisničko ime</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Unesite korisničko ime" required>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                            </div>
+                        </div>
+                          
+                        <div class="form-group">
+                            <label for="InputEmail">Šifra</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="InputEmailFirst" name="InputEmail" placeholder="Unesite Email" required>
+                                <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
+                            </div>
+                        </div>
+                        <a href="#">Zaboravili ste šifru?</a>
+                       
+                        <input type="submit" name="submit" id="submit" value="Prijavi se" class="btn btn-primary centered">
+                    </div>
+                </form>
+
+
+
+      </div>
+     
+    </div>
+
+  </div>
+</div>
+
+
+
+    <hr class="below"/>
+    
+    <div class="separation">
+
+        Lista modela
+    </div>
+    
+
+      <div class="row modeli" >
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="img/model1.jpg" class="homeModelImg" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">24 views</h4>
+                                <h4><a href="#">Prvi Model</a>
+                                </h4>
+                                <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right"><a href="#">More --></a></p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="img/model2.jpg"  class="homeModelImg" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">64 views</h4>
+                                <h4><a href="#">Drugi Model</a>
+                                </h4>
+                                <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right"><a href="#">More --></a></p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="img/model3.jpg"class="homeModelImg" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">74 views</h4>
+                                <h4><a href="#">Treci Model</a>
+                                </h4>
+                               <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
+                            </div>
+                            <div class="ratings">
+                                 <p class="pull-right"><a href="#">More --></a></p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="img/model4.jpg" class="homeModelImg" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">84 views</h4>
+                                <h4><a href="#">Cetvrti Model</a>
+                                </h4>
+                               <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right"><a href="#">More --></a></p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="img/model5.jpg" class="homeModelImg" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">94 views</h4>
+                                <h4><a href="#">Peti Model</a>
+                                </h4>
+                                <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
+                            </div>
+                            <div class="ratings">
+                                 <p class="pull-right"><a href="#">More --></a></p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="img/model6.jpg" class="homeModelImg" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">74 views</h4>
+                                <h4><a href="#">Sesti Model</a>
+                                </h4>
+                               <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right"><a href="#">More --></a></p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="img/model7.jpg" class="homeModelImg" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">84 views</h4>
+                                <h4><a href="#">Sedmi Model</a>
+                                </h4>
+                               <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right"><a href="#">More --></a></p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="img/model8.jpg" class="homeModelImg" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">94 views</h4>
+                                <h4><a href="#">Osmi Model</a>
+                                </h4>
+                                <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
+                            </div>
+                            <div class="ratings">
+                                 <p class="pull-right"><a href="#">More --></a></p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                        <div class="col-sm-4 col-lg-4 col-md-4">
+                        <div class="thumbnail">
+                            <img src="img/model9.jpg" class="homeModelImg" alt="">
+                            <div class="caption">
+                                <h4 class="pull-right">74 views</h4>
+                                <h4><a href="#">Deveti Model</a>
+                                </h4>
+                               <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
+                            </div>
+                            <div class="ratings">
+                                <p class="pull-right"><a href="#">More --></a></p>
+                                <p>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star"></span>
+                                    <span class="glyphicon glyphicon-star-empty"></span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="exploreMore">
+
+                    <a href="#" id="moreModels" class="btn btn-primary btn-xl page-scroll">Prikaži još</a>
+
+                </div>  
+
+
+           <div class="container">
+
+        <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; 3DTeam 2016</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+
+
+    <script src="js/wellcomeKocka.js"></script>
+    <script src="js/jquery.js"></script>
+    <script src="js/bootstrap.js"></script>
+
+
+<script type="text/javascript">
+
+        
+function Uskoro () {
+
+        alert("Uskoro");
+
+}
+
+
+</script>
+
+
+</body>
+
+
+
+</html>

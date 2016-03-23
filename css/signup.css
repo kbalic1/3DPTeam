@@ -1,0 +1,24 @@
+.facebookButton{
+	color: #3B5998;
+}
+
+.googleButton{
+	color: #DD4B39;
+}
+
+.facebookButton span {
+	font-size: 30px;
+}
+
+.googleButton span{
+	font-size: 30px;
+}
+
+#social-group{
+	margin-top: 30px;
+}
+
+#signup{
+	margin-top: -30px;
+}
+

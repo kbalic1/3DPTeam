@@ -1,0 +1,206 @@
+
+.wellcomeModel {
+	display: inline-block;
+	height: 500px;
+	width: 50%;
+	background-color: black;
+	margin-top: 50px;
+	float: left;
+	background-image: url(../img/modeli.jpg) ;
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+    -moz-width:55%;
+}
+
+.infoDiv {
+
+	display: inline-block;
+	background-color: black;
+	width: 50%;
+	height: 500px;
+	margin-top: 50px;
+	float: right;
+	background-image: url(../img/modeli2.jpg);
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+	padding-top: 8%;
+	text-align: center;
+	-moz-width:50%;
+}
+
+.infoDiv button {
+	border-radius: 300px;
+	border-color: transparent;
+}
+
+.header-sadrzaj {
+
+	background-color: #ee4b28;
+}
+
+.ispod  {
+
+	width: 100%;
+	margin-top: 10px;
+	border-color: #ee4b28;
+}
+
+.below  {
+
+	width: 100%;
+	border-color: #ee4b28;
+	padding: 0 0 0 0;
+	margin:  0 0 2% 0;
+
+}
+
+
+
+#signup {
+
+	margin-top: 10px;
+}
+
+#login {
+
+	background-color: #A7DBD8;
+	margin-bottom: 10px;
+}
+
+/*.loginTekst {
+
+	
+}
+
+.signUptekst {
+	margin-top: 10px;
+}*/
+
+.infoDiv p {
+
+	margin-top: 10px;
+	margin-bottom: 10px;
+	color: white;
+}
+
+#mainNav {
+
+	background-color: #ee4b28;
+}
+
+.header-main {
+
+	background-color:#A7DBD8;
+	height: 100%;
+}
+
+
+.modeli {
+
+	width:100%;
+    background-color:#ee4b28;
+}
+
+@font-face {
+    font-family: customfont;
+    src: url(../fonts/orange.ttf);
+}
+
+
+.header-footer {
+
+	text-align: center;
+	color:black;
+	min-height: 71px;
+
+
+}
+
+
+
+.header-footer h2 {
+
+	
+	font-family:  Merriweather,'Helvetica Neue',Arial,sans-serif; ;
+
+}
+
+
+
+.separation {
+
+
+		text-align: center;
+		height: 50px;
+
+}
+
+.homeModelImg {
+
+	max-width: 320px;
+	max-height: 150px;
+}
+
+.row {
+
+	padding-left: 10px;
+}
+
+#moreModels {
+
+	background-color:  #A7DBD8;
+	border-radius: 2px;
+}
+
+
+.exploreMore {
+
+	text-align: center;
+	margin-top: 20px;
+}
+
+
+.modal-body {
+
+	height: 300px;
+	width: 300px;
+}
+
+
+@media only screen and (max-width: 1080px) {
+
+
+.infoDiv {
+
+	display:list-item;
+}
+
+.wellcomeModel {
+
+	display: list-item;
+}
+
+.header-footer h2 {
+
+	font-size: 20px;
+}
+
+
+
+}
+
+
+@media only screen and (max-width: 600px) {
+
+	.wellcomeModel {
+		display: none;
+	}
+
+	.infoDiv {
+
+		width: 100%;
+	}
+
+
+}
+
