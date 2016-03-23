@@ -1,3 +1,13 @@
+:root{
+  --charColor: #D5D5D5;
+  --orangeTheme: #F05F40;
+  --tableCaptionColor: #E2E2E2;
+}
+
+body{
+	background-color: var(--tableCaptionColor);
+}
+
 .facebookButton{
 	color: #3B5998;
 }
