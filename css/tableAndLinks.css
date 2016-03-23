@@ -26,7 +26,7 @@ table td, th{
 	text-align: center;
 	padding: 15px;
 }
-table caption, #linksSection div.col-lg-12{
+table caption, .linksSection div.col-lg-12{
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
 	background-color: var(--tableCaptionColorv1);
@@ -106,20 +106,20 @@ td:nth-child(3){
 	height: 12%;
 }
 
-#linksSection ul{
+.linksSection ul{
 	margin: 5px;
 }
 
-#linksSection ul{
+.linksSection ul{
 	list-style-type: none;
 }
 
-#linksSection ul li a:link{
+.linksSection ul li a:link{
 	text-decoration: none;
 
 }
 
-#linksSection ul li:hover{
+.linksSection ul li:hover{
 	font-weight: bold;
 	list-style-image: url('../img/cube.jpg');
 }
@@ -132,7 +132,7 @@ td:nth-child(3){
 	 
 }
 
-#linksSection {
+.linksSection {
 
 	display: inline-block;
 	float: right;
