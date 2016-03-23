@@ -2,6 +2,7 @@
   --charColor: #D5D5D5;
   --orangeTheme: #F05F40;
   --tableCaptionColor: #E2E2E2;
+  --tableCaptionColorv1: #FE7052;
 }
 
 body{
@@ -28,12 +29,10 @@ table td, th{
 table caption, #linksSection div.col-lg-12{
 	border-top-left-radius: 3px;
 	border-top-right-radius: 3px;
-	background-color: var(--tableCaptionColor);
+	background-color: var(--tableCaptionColorv1);
 	text-align: center;
 	font-size: 24px;
 }
-
-
 
 table a{
 	color: var(--charColor);
@@ -103,7 +102,9 @@ td:nth-child(3){
 	font-size: 18px;
 }
 
-
+#navDiv{
+	height: 12%;
+}
 
 #linksSection ul{
 	margin: 5px;
@@ -147,7 +148,8 @@ td:nth-child(3){
 
 .heading {
 
-	background-color: var(--tableCaptionColor);
+
+	background-color: var(--tableCaptionColorv1);
     text-align: center;
     font-size: 24px;
     color: #777;
