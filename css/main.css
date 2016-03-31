@@ -1,3 +1,40 @@
+.modelsWrapper{
+	width: 100%;
+	background-color: #E2E2E2;
+}
+#filterLabel{
+	margin-left: 2%;
+	display: inline-block;
+}
+
+#loading{
+	display: none;
+	padding:3%;
+}
+
+#modelFilter{
+	display: inline-block;
+	padding: 10px;
+
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none;   /* Chrome/Safari/Opera */
+    -khtml-user-select: none;    /* Konqueror */
+    -moz-user-select: none;      /* Firefox */
+    -ms-user-select: none;       /* IE/Edge */
+    user-select: none; 
+}
+
+#modelFilter ul li{
+	border:1px solid #F05F40;
+	padding: 4px;
+	display: inline-block;	
+}
+
+#modelFilter ul li:hover{
+	background-color: #F05F40;
+	cursor: pointer;
+}
+
 footer{
 	text-align: center;
 }
@@ -46,8 +83,10 @@ footer{
 }
 
 .modeli {
-
+	margin-left: auto;
+	margin-right: auto;
 	width:100%;
+	padding-top: 8px;
 	background-color: #E2E2E2; 
 }
 
@@ -205,6 +244,10 @@ footer{
 		width: 100%;
 	}
 
+
+}
+
+.uploadedAgo{
 
 }
 
