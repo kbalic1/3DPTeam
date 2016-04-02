@@ -20,6 +20,9 @@
 
     <script src="js/three.js"></script>
   
+
+
+
 </head>
 
 <body >
@@ -47,6 +50,12 @@
                 
                 <a class="navbar-brand page-scroll" href="index.html">3D Platforma</a>
             </div>
+            <div>
+
+                    <label value="<?= echo $_SESSION['Username'] ?>"></label>
+                    <? echo $_SESSION['Username'] ?>
+                    Test
+            </div>  
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
@@ -66,6 +75,8 @@
         </div>
         
     </nav>
+
+
     <div class="header-main">
       
 
@@ -92,27 +103,23 @@
 
 
     </div>
-    <div id="myModal" class="modal fade" role="dialog">
-     <div class="modal-dialog">
+   <div id="myModal" class="modal fade" role="dialog">
+  <div class="modal-dialog">
 
     <!-- Modal content-->
-        <div class="modal-content" id="tdp_loginModal">
+    <div class="modal-content">
     
-            <div class="row">
-                    <div class="col-md-1">
-                    </div>
-
-                    <div class="col-md-5 modal-body" style="display:inline-block">
-                       <form  novalidate action="provjeri.php" method="post">
-                        <div class=" text-center">
+      <div class="modal-body">
+          <form  novalidate action="provjeri.php" method="post">
+                    <div class=" text-center">
                         
-                            <div class="form-group">
+                        <div class="form-group">
                             <label for="InputName">Korisničko ime</label>
                             <div class="input-group">
                                 <input type="text" class="form-control" name="username" id="InputName" placeholder="Unesite korisničko ime" required>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
-                            </div>
+                        </div>
                           
                         <div class="form-group">
                             <label for="InputName">Šifra</label>
@@ -124,54 +131,30 @@
                         <a href="#">Zaboravili ste šifru?</a>
                        
                         <input type="submit" name="submit" id="submit" value="Prijavi se" class="btn btn-primary centered">
-                         </div>
-                         </form>
-
-                     </div>
-                     <div class="col-md-4 tdp_externalLogins" id="social-group" >       
-                        
-                            <div class="form-group">
-                            <a class="btn btn-block btn-social btn-facebook facebookButton">
-                                <span class="fa fa-facebook"></span>   Facebook
-                            </a>  
-                            <br/>
-                            <br/>
-                            <a class="btn btn-block btn-social btn-google googleButton" >
-                                <span class="fa fa-google"></span> Google
-                            </a>
-                            </div>
-                        
-                    
-                     </div>
-                    <div class="col-md-2">
                     </div>
-     
-             </div>
-        </div>
+                </form>
 
-     </div>
+
+
+      </div>
+     
     </div>
+
+  </div>
+</div>
+
+
 
     <hr class="below"/>
     <div class="separation">
 
         Lista modela
     </div>
-   <div class="modelsWrapper">
-    <div id="filterLabel">Prikaz modela:</div>
-        <div id="modelFilter">
-            <ul id="ulFilter">
-                <li onclick="filterModels(this, 1)">Svi modeli</li>
-                <li onclick="filterModels(this, 2)">Današnji modeli</li>
-                <li onclick="filterModels(this, 3)">Modeli ove sedmice</li>
-                <li onclick="filterModels(this, 4)">Modeli ovog mjeseca</li>
-            </ul>
-        </div>
-    <hr class="below"/>
-    <div class="text-center" id="loading"><img src="img/loading_spinner.gif"></div>
-      <div class="row modeli" id="models">
+    
 
-                    <div class="col-sm-4 col-lg-4 col-md-4">
+      <div class="row modeli" >
+
+                    <div class="col-sm-4 col-lg-4 col-md-4 singleModel">
                         <div class="thumbnail">
                             <img src="img/model1.jpg" class="homeModelImg" alt="">
                             <div class="caption">
@@ -179,8 +162,6 @@
                                 <h4><a href="#">Prvi Model</a>
                                 </h4>
                                 <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
-                                <span class="uploadedAgo"></span>
-                                <input type="hidden" class="uploadDateTime" value="03/31/2016 22:56:20" />
                             </div>
                             <div class="ratings">
                                 <p class="pull-right"><a href="#">More --></a></p>
@@ -203,8 +184,6 @@
                                 <h4><a href="#">Drugi Model</a>
                                 </h4>
                                 <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
-                                <span class="uploadedAgo"></span>
-                                <input type="hidden" class="uploadDateTime" value="03/31/2016 21:56:20" />
                             </div>
                             <div class="ratings">
                                 <p class="pull-right"><a href="#">More --></a></p>
@@ -227,8 +206,6 @@
                                 <h4><a href="#">Treci Model</a>
                                 </h4>
                                <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
-                               <span class="uploadedAgo"></span>
-                               <input type="hidden" class="uploadDateTime" value="03/30/2016 9:56:20" />
                             </div>
                             <div class="ratings">
                                  <p class="pull-right"><a href="#">More --></a></p>
@@ -251,8 +228,6 @@
                                 <h4><a href="#">Cetvrti Model</a>
                                 </h4>
                                <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
-                               <span class="uploadedAgo"></span>
-                               <input type="hidden" class="uploadDateTime" value="03/30/2016 8:30:20" />
                             </div>
                             <div class="ratings">
                                 <p class="pull-right"><a href="#">More --></a></p>
@@ -275,8 +250,6 @@
                                 <h4><a href="#">Peti Model</a>
                                 </h4>
                                 <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
-                                <span class="uploadedAgo"></span>
-                               <input type="hidden" class="uploadDateTime" value="03/29/2016 19:56:20" />
                             </div>
                             <div class="ratings">
                                  <p class="pull-right"><a href="#">More --></a></p>
@@ -299,8 +272,6 @@
                                 <h4><a href="#">Sesti Model</a>
                                 </h4>
                                <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
-                               <span class="uploadedAgo"></span>
-                               <input type="hidden" class="uploadDateTime" value="03/29/2016 16:56:20" />
                             </div>
                             <div class="ratings">
                                 <p class="pull-right"><a href="#">More --></a></p>
@@ -323,8 +294,6 @@
                                 <h4><a href="#">Sedmi Model</a>
                                 </h4>
                                <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
-                               <span class="uploadedAgo"></span>
-                               <input type="hidden" class="uploadDateTime" value="03/28/2016 15:56:20" />
                             </div>
                             <div class="ratings">
                                 <p class="pull-right"><a href="#">More --></a></p>
@@ -347,8 +316,6 @@
                                 <h4><a href="#">Osmi Model</a>
                                 </h4>
                                 <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
-                                <span class="uploadedAgo"></span>
-                               <input type="hidden" class="uploadDateTime" value="03/30/2016 23:00:20" />
                             </div>
                             <div class="ratings">
                                  <p class="pull-right"><a href="#">More --></a></p>
@@ -371,8 +338,6 @@
                                 <h4><a href="#">Deveti Model</a>
                                 </h4>
                                <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
-                               <span class="uploadedAgo"></span>
-                               <input type="hidden" class="uploadDateTime" value="01/27/2016 23:00:20" />
                             </div>
                             <div class="ratings">
                                 <p class="pull-right"><a href="#">More --></a></p>
@@ -387,79 +352,6 @@
                         </div>
                     </div>
 
-                     <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="img/model9.jpg" class="homeModelImg" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">74 views</h4>
-                                <h4><a href="#">Deseti Model</a>
-                                </h4>
-                               <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
-                               <span class="uploadedAgo"></span>
-                               <input type="hidden" class="uploadDateTime" value="03/01/2016 23:00:20" />
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right"><a href="#">More --></a></p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                                            <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="img/model9.jpg" class="homeModelImg" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">74 views</h4>
-                                <h4><a href="#">Jedanaesti Model</a>
-                                </h4>
-                               <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
-                               <span class="uploadedAgo"></span>
-                               <input type="hidden" class="uploadDateTime" value="02/27/2016 23:00:20" />
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right"><a href="#">More --></a></p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-sm-4 col-lg-4 col-md-4">
-                        <div class="thumbnail">
-                            <img src="img/model9.jpg" class="homeModelImg" alt="">
-                            <div class="caption">
-                                <h4 class="pull-right">74 views</h4>
-                                <h4><a href="#">Dvanaesti Model</a>
-                                </h4>
-                               <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
-                               <span class="uploadedAgo"></span>
-                               <input type="hidden" class="uploadDateTime" value="01/27/2016 23:00:20" />
-                            </div>
-                            <div class="ratings">
-                                <p class="pull-right"><a href="#">More --></a></p>
-                                <p>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star"></span>
-                                    <span class="glyphicon glyphicon-star-empty"></span>
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
                 </div>
 
                 <div class="exploreMore">
@@ -488,7 +380,15 @@
     <script src="js/wellcomeKocka.js"></script>
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
-    <script src="js/modelUploadDates.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+
+        
+
+
+
+</script>
 
 
 </body>

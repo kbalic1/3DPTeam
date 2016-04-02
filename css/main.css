@@ -118,6 +118,39 @@ footer{
 	margin-bottom: 10px;
 }
 
+#tdp_loginModal {
+
+	height: 250px !important;
+
+
+}
+
+.facebookButton{
+	color: #3B5998;
+}
+
+.googleButton{
+	color: #DD4B39;
+}
+
+.facebookButton span {
+	font-size: 30px;
+}
+
+.googleButton span{
+	font-size: 30px;
+}
+
+#social-group{
+	margin-top: 30px;
+}
+
+.tdp_externalLogins {
+
+	display:inline-block;
+	text-align:center;
+}
+
 /*.loginTekst {
 
 	
@@ -137,6 +170,11 @@ footer{
 #mainNav {
 
 	background-color: #ee4b28;
+
+}
+
+#navDiv {
+	height: 50px;
 }
 
 .header-main {
@@ -209,6 +247,45 @@ footer{
 
 	height: 300px;
 	width: 300px;
+}
+
+.textValidacija {
+
+	color:#f62a2a;
+	max-height: 0px;
+	font-size: 11px;
+	float: left;
+
+}
+
+.tdp_form_group {
+	/*margin-bottom: 0 !important;*/
+}
+
+.username {
+	
+	text-transform: capitalize !important;
+	font-size: 15px !important;
+
+}
+.tdp_button_margin {
+
+	margin-top: 20px;
+}
+
+#tdp_border {
+
+	border-left :1px solid white !important;
+	
+	
+
+}
+
+.3dp-img-size {
+
+		height: 10px;
+		width: 10px;
+
 }
 
 
