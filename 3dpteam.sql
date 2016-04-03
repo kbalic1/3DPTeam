@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 04, 2016 at 12:14 AM
+-- Generation Time: Apr 04, 2016 at 12:21 AM
 -- Server version: 5.5.25a
 -- PHP Version: 5.4.4
 
@@ -44,22 +44,7 @@ CREATE TABLE IF NOT EXISTS `korisnik` (
 
 INSERT INTO `korisnik` (`korisnik_id`, `ime`, `prezime`, `datum`, `mail`, `profilnaSlikaID`, `korisnikAccID`, `Aktivan`) VALUES
 (4, NULL, NULL, '2016-03-31', 'balickerim@hotmail.com', NULL, 6, 1),
-(5, NULL, NULL, '2016-04-01', 'q@h', NULL, 7, 1),
-(6, NULL, NULL, '2016-04-01', '', NULL, 8, 1),
-(7, 'Kenan', 'Prses', '2016-04-02', 'kena@gmail.com', NULL, 9, 1),
-(8, NULL, NULL, '2016-04-02', '', NULL, 10, 1),
-(9, NULL, NULL, '2016-04-02', '', NULL, 11, 1),
-(10, NULL, NULL, '2016-04-02', '', NULL, 12, 1),
-(11, NULL, NULL, '2016-04-02', '', NULL, 13, 1),
-(12, NULL, NULL, '2016-04-02', '', NULL, 14, 1),
-(13, NULL, NULL, '2016-04-02', '', NULL, 15, 1),
-(14, NULL, NULL, '2016-04-02', '', NULL, 16, 1),
-(15, NULL, NULL, '2016-04-03', '', NULL, 17, 1),
-(16, NULL, NULL, '2016-04-03', 'bal@f', NULL, 18, 1),
-(17, NULL, NULL, '2016-04-03', 'bal@f', NULL, 19, 1),
-(18, NULL, NULL, '2016-04-03', '', NULL, 20, 1),
-(19, NULL, NULL, '2016-04-03', '', NULL, 21, 1),
-(20, NULL, NULL, '2016-04-03', '', NULL, 22, 1);
+(7, 'Kenan', 'Prses', '2016-04-02', 'kena@gmail.com', NULL, 9, 1);
 
 -- --------------------------------------------------------
 
@@ -81,22 +66,7 @@ CREATE TABLE IF NOT EXISTS `korisnikaccount` (
 
 INSERT INTO `korisnikaccount` (`korisnikAcc_id`, `username`, `password`, `rolaID`) VALUES
 (6, 'kerim', 'test', 1),
-(7, 'q', 'q', 1),
-(8, '', '', 1),
-(9, 'kenan', 'test', 1),
-(10, '', '', 1),
-(11, '', '', 1),
-(12, '', '', 1),
-(13, '', '', 1),
-(14, '', '', 1),
-(15, '', '', 1),
-(16, '', 'Tefter11', 1),
-(17, '', 'Tefter11', 1),
-(18, '', 'Tefter11', 1),
-(19, '', 'Tefter11', 1),
-(20, '', 'Tefter11', 1),
-(21, '', 'Tefter11', 1),
-(22, '', '', 1);
+(9, 'kenan', 'test', 1);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
