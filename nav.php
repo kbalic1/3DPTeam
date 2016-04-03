@@ -31,25 +31,48 @@
                 <ul class="nav navbar-nav navbar-right">
                   
 
-                      <li>
-                        <a class="page-scroll" href="signup.php">SignUp</a>
+                     
+                    <?php
+
+                         if(!isset($_SESSION['Username'])) {
+                           
+                        print(" <li>
+                        <a class='page-scroll' href='signup.php'>SignUp</a>
                     </li>
+                    ");
+                            }
+
+                           
+                           
+
+                     ?>
+                    
                     <li>
                         <a class="page-scroll" href="tableAndLinks.php">Info</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="kontakt.php">Kontakt</a>
                     </li>
-                    <li  id="tdp_border" >
-                        
-                        
-                    <!--   <img class=" img-circle " src="img/model1.jpg" /> -->
-                 
-                       
-                       <a class="username page-scroll" href="#"> <?php echo $_SESSION['Username']; ?></a>
+                       <?php
 
+                         if(isset($_SESSION['Username'])) {
+                            $username=$_SESSION['Username'];
+                        print(" <li  id='tdp_border' >
                        
-                    </li>
+                       <a class='username page-scroll' href='indexLogovan.php'>" .$_SESSION['Username']."</a>
+                        </li>
+
+                        <li>
+                        <a class='page-scroll' href='logout.php'>LogOut</a>
+                        </li>
+                    ");
+                            }
+
+                           
+                     ?>
+                    
+                    
+
                 </ul>
             </div>
            
