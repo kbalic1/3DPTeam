@@ -7,6 +7,7 @@
             var password2 = document.getElementById("password2");
             var validate=true;
             var imaPassworda=true;
+            var validate1 = false;
 
             if(username.value== "")
             {
@@ -37,12 +38,17 @@
 
             if(imaPassworda)
             {
-                var validate1=checkPasswords();
+                 validate1=checkPasswords();
                
             }
 
-            if(!validate && validate1)
-                {return false;}
+
+            if(!validate && !validate1)
+                {
+
+                    return false;
+
+                }
 
 
 
