@@ -5,7 +5,6 @@ var uploadTextArray = [];
 
 window.onload = function()
 {
-
 	// postavljanje backcolor filtera na svi modeli
 	document.getElementById("ulFilter").getElementsByTagName("li")[0].style.backgroundColor = "#F05F40";
 
@@ -16,10 +15,9 @@ window.onload = function()
 	{		
 	    uploadTextArray[i].innerHTML = getTextForDate(dateTimeArray[i].value);
 	}
-
 }
 
-function getDifferenceInSeconds(date)
+function getDifferenceFromNowInSeconds(date)
 {
 	var dateValue = new Date(date)
 	var dateNow = new Date();
@@ -28,30 +26,64 @@ function getDifferenceInSeconds(date)
 	return differenceSeconds;
 }
 
-function isTodaysDate(date) {
+function isOlderThanDay(date) {
 
-	var differenceSeconds = getDifferenceInSeconds(date);
-	if(Math.round(differenceSeconds) <= 60*60*24) return true;
-	else return false;	
+	var differenceSeconds = getDifferenceFromNowInSeconds(date);
+	if(Math.round(differenceSeconds) <= 60*60*24) return false;
+	else return true;	
 }
 
-function isWeeksDate(date) {
-	var differenceSeconds = getDifferenceInSeconds(date);
+function isOlderThanWeek(date) {
+	var differenceSeconds = getDifferenceFromNowInSeconds(date);
 
-	if(Math.round(differenceSeconds) <= 60*60*24*7) return true;
-	else return false;	
+	if(Math.round(differenceSeconds) <= 60*60*24*7) return false;
+	else return true;	
 }
 
-function isMonthsDate(date) {
-	var differenceSeconds = getDifferenceInSeconds(date);
+function isOlderThanMonth(date) {
+	var differenceSeconds = getDifferenceFromNowInSeconds(date);
 
-	if(Math.round(differenceSeconds) <= 60*60*24*30) return true;
-	else return false;	
+	if(Math.round(differenceSeconds) <= 60*60*24*30) return false;
+	else return true;	
+}
+
+function isInThisDay(date)
+{
+	var dateValue = new Date(date);
+	var today = new Date();
+	today.setHours(0,0,0,0);
+
+	return (dateValue.getTime() > today.getTime())
+}
+
+function isInThisWeek(date)
+{
+	var mondayThisWeek = getMonday(new Date());
+	var dateValue = new Date(date);
+
+	return (dateValue.getTime() > mondayThisWeek.getTime())
+}
+
+function isInThisMonth(date)
+{
+	var firstDayOfMonth = new Date();
+	var dateValue = new Date(date);
+	firstDayOfMonth.setDate(1);
+	firstDayOfMonth.setHours(0,0,0,0);
+
+	return (dateValue.getTime() > firstDayOfMonth.getTime())
+}
+
+function getMonday(d) {
+  d = new Date(d);
+  var day = d.getDay(),
+      diff = d.getDate() - day + (day == 0 ? -6:1); // adjust when day is sunday
+  return new Date(d.setDate(diff));
 }
 
 function getTextForDate(date) {
 
-	var differenceSeconds = getDifferenceInSeconds(date);
+	var differenceSeconds = getDifferenceFromNowInSeconds(date);
 	var dateValue = new Date(date)
 
 	var text = "";
@@ -129,7 +161,7 @@ function filterModels(e, displayType) {
     {
 		for(var i = 0; i< dateTimeArray.length; i++)
 		{
-			if(isTodaysDate(dateTimeArray[i].value))
+			if(isInThisDay(dateTimeArray[i].value))
 				uploadTextArray[i].parentElement.parentElement.parentElement.style.display = "block"
 			else
 				uploadTextArray[i].parentElement.parentElement.parentElement.style.display = "none"
@@ -139,7 +171,7 @@ function filterModels(e, displayType) {
     {
 		for(var i = 0; i< dateTimeArray.length; i++)
 		{
-			if(isWeeksDate(dateTimeArray[i].value))
+			if(isInThisWeek(dateTimeArray[i].value))
 				uploadTextArray[i].parentElement.parentElement.parentElement.style.display = "block"
 			else
 				uploadTextArray[i].parentElement.parentElement.parentElement.style.display = "none"
@@ -149,7 +181,7 @@ function filterModels(e, displayType) {
     {
 		for(var i = 0; i< dateTimeArray.length; i++)
 		{
-			if(isMonthsDate(dateTimeArray[i].value))
+			if(isInThisMonth(dateTimeArray[i].value))
 				uploadTextArray[i].parentElement.parentElement.parentElement.style.display = "block"
 			else
 				uploadTextArray[i].parentElement.parentElement.parentElement.style.display = "none"
