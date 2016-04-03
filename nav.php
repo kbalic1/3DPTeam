@@ -23,21 +23,22 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-                <a class="navbar-brand page-scroll" href="index.html">3D Platforma</a>
+                <a class="navbar-brand page-scroll" href="index.php">3D Platforma</a>
             </div>
            
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                   
-                    <li>
-                        <a class="page-scroll" href="signup.html">Sign Up</a>
+
+                      <li>
+                        <a class="page-scroll" href="signup.php">SignUp</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="tableAndLinks.html">Info</a>
+                        <a class="page-scroll" href="tableAndLinks.php">Info</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="kontakt.html">Kontakt</a>
+                        <a class="page-scroll" href="kontakt.php">Kontakt</a>
                     </li>
                     <li  id="tdp_border" >
                         

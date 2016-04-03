@@ -36,14 +36,9 @@ $password2_k=$_REQUEST['password2'];
 
 
 
-if($password1_k!=$password2_k)
-{ 
-	echo "Passwordi se ne podudaraju";
-}
 
 
 
-else{
 $sql = "INSERT INTO korisnikAccount (username,password,rolaID)
 VALUES ('$username_k', '$password2_k' ,1)";
 
@@ -74,7 +69,7 @@ if ($conn->query($sql) === TRUE) {
 	header("location: index.html");
 	}
 
-}
+
 
 
 

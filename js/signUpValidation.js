@@ -37,16 +37,23 @@
 
             if(imaPassworda)
             {
-                var validate=checkPasswords();
+                var validate1=checkPasswords();
                
             }
 
-            if(!validate)
+            if(!validate && validate1)
                 {return false;}
 
 
 
             
+
+        }
+
+        function provjeriPass() {
+
+                var varijabla=checkPasswords();
+
 
         }
 
@@ -63,6 +70,7 @@ document.getElementById("validacijaPassword2").innerHTML="" ;
 
 
 function checkPasswords () {
+    document.getElementById("validacijaPassword2").innerHTML="";
 
    var pass1= document.getElementById("password1");
    var pass2= document.getElementById("password2");

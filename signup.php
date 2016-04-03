@@ -25,48 +25,7 @@
 </head>
 
 <body id="page-top">
-   <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-        <div class="container-fluid">
-
-            <div class="navbar-header">
-                <div class=" navbar-brand  stage" >
-                  <div class=" cube" >
-                    <figure class="back"></figure>
-                    <figure class="top"></figure>
-                    <figure class="bottom"></figure>
-                    <figure class="left"></figure>
-                    <figure class="right"></figure>
-                    <figure class="front"><div>3DP</div></figure>
-                  </div>
-                </div>
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                
-                <a class="navbar-brand page-scroll" href="index.html">3D Platforma</a>
-            </div>
-
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                  
-                    <li>
-                        <a class="page-scroll" href="signup.html">Sign Up</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="tableAndLinks.html">Info</a>
-                    </li>
-                    <li>
-                        <a class="page-scroll" href="kontakt.html">Kontakt</a>
-                    </li>
-                </ul>
-            </div>
-           
-        </div>
-        
-    </nav>
+ <?php include('nav.php') ?>
 
 
   
@@ -96,7 +55,7 @@
                         <div class="form-group tdp_form_group">
                             <label >Unesite Email</label>
                             <div class="input-group">
-                                <input type="email" class="form-control" id="email" name="email" placeholder="Unesite Email" onkeydown="checkFilled();">
+                                <input type="email" class="form-control" id="email" name="email" placeholder="Unesite Email" onkeyup="checkFilled();">
                                  
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
@@ -118,7 +77,7 @@
                         <div class="form-group tdp_form_group">
                             <label >Ponovite šifru</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="password2" name="password2" placeholder="Potvrdite šifru" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters" >
+                                <input type="password" class="form-control" id="password2" name="password2" onkeyup="javascript:provjeriPass()" placeholder="Potvrdite šifru" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password mora sadržavat minimalno 8 karaktera jedno veliko slovo i broj." >
                                  
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
@@ -151,6 +110,7 @@
             </div>
        
     </section>
+    <?php include('footer.php') ?>
 
 
   <script src="js/signUpValidation.js"></script>
