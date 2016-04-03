@@ -42,8 +42,10 @@
                
             }
 
+    
+            
 
-            if(!validate && !validate1)
+            if(!validate || !validate1)
                 {
 
                     return false;
