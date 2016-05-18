@@ -1,5 +1,5 @@
 
- <?php /* session_start(); if(isset($_SESSION['logon'])) { */ ?>
+ <?php session_start(); if(isset($_SESSION['logon'])) { ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -301,6 +301,6 @@ if(isset($_REQUEST['spasiPassword']))
 
 
 </html>
-<?php /* } else header("Location:index.html");*/ ?>
+<?php  } else header("Location:index.html"); ?>
 
 </html>

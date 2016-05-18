@@ -1,5 +1,5 @@
 
-    <?php session_start(); ?>
+    <?php /*session_start();*/ ?>
 
     <div id="navDiv" >
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
@@ -29,9 +29,7 @@
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                  
-
-                     
+             
                     <?php
 
                          if(!isset($_SESSION['Username'])) {
