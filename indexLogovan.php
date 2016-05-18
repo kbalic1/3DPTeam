@@ -70,6 +70,7 @@ if ($result1->num_rows > 0) {
         $mail=$row["mail"];
 
     }
+
 }
 
 
@@ -176,7 +177,7 @@ if(isset($_REQUEST['spasiPassword']))
               <div class="table-responsive">
 
 
-                    <button class="dugmeDodaj">+ Dodaj novi model</button>
+                   <a href="dodavanjeModela.php" id="dugmeDodaj" class="btn btn-primary btn-xl page-scroll">+ Dodaj novi model</a>
 
                     <?php require_once('modeli.php') ?>
 
