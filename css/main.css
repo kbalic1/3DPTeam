@@ -153,10 +153,21 @@ footer{
 
 
 
-.dugmeDodaj {
+#dugmeDodaj {
 
 	margin: 10px 0 10px 0;
 	border-radius: 5px;
+	height: 30px ;
+	padding: 5px;
+}
+
+
+.unosModelaPodaci {
+
+	float: left;
+	width: 50%;
+
+
 }
 
 

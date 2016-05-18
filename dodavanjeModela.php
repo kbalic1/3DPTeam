@@ -30,8 +30,35 @@
 
 
 
-<div>
+<div class="unosModelaPodaci">
 
+ <form novalidate  action=" register.php" method="post" onsubmit="return validate()" >
+
+               
+
+                    <div class="col-lg-4 col-lg-offset-4 text-center">
+                        
+                        <div class="form-group tdp_form_group">
+                            <label >Unesite naziv modela</label>
+                            <div class="input-group ">
+
+                                <input type="text" class="form-control" name="username" id="username" placeholder="Naziv modela"  >
+
+
+                                
+                            </div>
+                             <label id="validacijaUsername" class="textValidacija "></label>
+                        </div>
+                       
+                        <input type="submit" name="submit" id="submit" value="Registruj se" class="btn btn-primary centered tdp_button_margin ">
+                    </div>
+                </form>
+
+                <form action="upload.php" method="post" enctype="multipart/form-data">
+    Select image to upload:
+    <input type="file" name="fileToUpload" id="fileToUpload">
+    <input type="submit" value="Upload Image" name="submit">
+</form>
 
 </div>
 
