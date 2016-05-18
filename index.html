@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/creative.css" type="text/css">
     <link rel="stylesheet" href="css/logo.css" type="text/css">
 
@@ -45,20 +46,20 @@
                     <span class="icon-bar"></span>
                 </button>
                 
-                <a class="navbar-brand page-scroll" href="index.html">3D Platforma</a>
+                <a class="navbar-brand page-scroll" href="index.php">3D Platforma</a>
             </div>
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                   
                     <li>
-                        <a class="page-scroll" href="signup.html">Sign Up</a>
+                        <a class="page-scroll" href="signup.php">Sign Up</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="tableAndLinks.html">Info</a>
+                        <a class="page-scroll" href="tableAndLinks.php">Info</a>
                     </li>
                     <li>
-                        <a class="page-scroll" href="kontakt.html">Kontakt</a>
+                        <a class="page-scroll" href="kontakt.php">Kontakt</a>
                     </li>
                 </ul>
             </div>
@@ -78,7 +79,7 @@
                  <button  id="login" class="btn btn-primary btn-xl page-scroll" data-toggle="modal" data-target="#myModal" >Prijavi se!</button>
                  <br/>
                  <p>ILI</p>
-                  <a href="signup.html" id="signup" class="btn btn-primary btn-xl page-scroll">Registruj se!</a>
+                  <a href="signup.php" id="signup" class="btn btn-primary btn-xl page-scroll">Registruj se!</a>
                   <p class="signUptekst">na najveću domaću 3D web platformu</p>
 
              </div>
@@ -92,45 +93,65 @@
 
 
     </div>
-   <div id="myModal" class="modal fade" role="dialog">
-  <div class="modal-dialog">
+    <div id="myModal" class="modal fade" role="dialog">
+     <div class="modal-dialog">
 
     <!-- Modal content-->
-    <div class="modal-content">
+        <div class="modal-content" id="tdp_loginModal">
     
-      <div class="modal-body">
-          <form  novalidate>
-                    <div class=" text-center">
+            <div class="row">
+                    <div class="col-md-1">
+                    </div>
+
+                    <div class="col-md-5 modal-body" style="display:inline-block">
+                       <form  novalidate action="provjeri.php" method="post">
+                        <div class=" text-center">
                         
-                        <div class="form-group">
+                            <div class="form-group">
                             <label for="InputName">Korisničko ime</label>
                             <div class="input-group">
-                                <input type="text" class="form-control" name="InputName" id="InputName" placeholder="Unesite korisničko ime" required>
+                                <input type="text" class="form-control" name="username" id="InputName" placeholder="Unesite korisničko ime" required>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
-                        </div>
+                            </div>
                           
                         <div class="form-group">
                             <label for="InputName">Šifra</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="InputPassFirst" name="InputPass" placeholder="Unesite šifru" required>
+                                <input type="password" class="form-control" id="InputPassFirst" name="password" placeholder="Unesite šifru" required>
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
                         </div>
                         <a href="#">Zaboravili ste šifru?</a>
                        
                         <input type="submit" name="submit" id="submit" value="Prijavi se" class="btn btn-primary centered">
+                         </div>
+                         </form>
+
+                     </div>
+                     <div class="col-md-4 tdp_externalLogins" id="social-group" >       
+                        
+                            <div class="form-group">
+                            <a class="btn btn-block btn-social btn-facebook facebookButton">
+                                <span class="fa fa-facebook"></span>   Facebook
+                            </a>  
+                            <br/>
+                            <br/>
+                            <a class="btn btn-block btn-social btn-google googleButton" >
+                                <span class="fa fa-google"></span> Google
+                            </a>
+                            </div>
+                        
+                    
+                     </div>
+                    <div class="col-md-2">
                     </div>
-                </form>
-
-
-
-      </div>
      
-    </div>
+             </div>
+        </div>
 
-  </div>
-</div>
+     </div>
+    </div>
 
     <hr class="below"/>
     <div class="separation">
@@ -160,7 +181,7 @@
                                 </h4>
                                 <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
                                 <span class="uploadedAgo"></span>
-                                <input type="hidden" class="uploadDateTime" value="03/31/2016 22:56:20" />
+                                <input type="hidden" class="uploadDateTime" value="04/03/2016 15:56:20" />
                             </div>
                             <div class="ratings">
                                 <p class="pull-right"><a href="#">More --></a></p>
@@ -184,7 +205,7 @@
                                 </h4>
                                 <p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>
                                 <span class="uploadedAgo"></span>
-                                <input type="hidden" class="uploadDateTime" value="03/31/2016 21:56:20" />
+                                <input type="hidden" class="uploadDateTime" value="04/01/2016 21:56:20" />
                             </div>
                             <div class="ratings">
                                 <p class="pull-right"><a href="#">More --></a></p>
