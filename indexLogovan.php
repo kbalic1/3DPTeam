@@ -1,4 +1,6 @@
+
 <?php session_start(); if(isset($_SESSION['logon'])) { ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,9 +26,11 @@
 
 <body >
 
+
 <?php require_once("config.php"); ?>
 
 <?php require_once('nav.php') ?>
+
 
 <?php 
 
@@ -38,7 +42,9 @@ $sql= "SELECT  `korisnikAcc_id`
 FROM  `korisnikaccount` 
 WHERE  `username` =  '$username_k' ";
 $result=$conn->query($sql);
+
 $ID=0;
+
 if ($result->num_rows > 0) {
    
     while($row = $result->fetch_assoc()) {
@@ -67,6 +73,7 @@ if ($result1->num_rows > 0) {
 }
 
 
+
 if(isset($_REQUEST['spasi']))
 {
 
@@ -89,8 +96,10 @@ if(isset($_REQUEST['spasiPassword']))
 
   $noviPassword=$_REQUEST['password'];
 
+  $hashPassworda = hash(md5,$noviPassword,false);
+
    $sql="UPDATE `korisnikaccount`
-        SET `password`= \"$noviPassword\"
+        SET `password`= \"$hashPassworda\"
         WHERE `korisnikAcc_ID` = $ID";
 
   $conn->query($sql);
@@ -101,12 +110,17 @@ if(isset($_REQUEST['spasiPassword']))
 
 
 
+
 ?>
 
 
 <div class="container bootstrap snippet">
     <div class="row">
-        <div class="col-sm-10"><h1>Korisnik : <?php echo $_SESSION['Username']; ?></h1></div>
+
+        
+
+        <div class="col-sm-10"><h1><?php echo $_SESSION['Username']; ?></h1></div>
+
         <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div>
     </div>
     <div class="row">
@@ -147,17 +161,27 @@ if(isset($_REQUEST['spasiPassword']))
           <ul class="nav nav-tabs" id="myTab">
             <li class="active"><a href="#home" data-toggle="tab">Modeli</a></li>
             <li><a href="#messages" data-toggle="tab">Diskusije</a></li>
+
             <li><a href="#settings" data-toggle="tab">Licni podaci</a></li>
             <li><a href="#pass" data-toggle="tab">Promjena passworda</a></li>
           </ul>
                  
+
+           
+          </ul>
+              
+
           <div class="tab-content">
             <div class="tab-pane active" id="home">
               <div class="table-responsive">
 
+
                     <button class="dugmeDodaj">+ Dodaj novi model</button>
 
                     <?php require_once('modeli.php') ?>
+
+                
+
 
                 <hr>
                 
@@ -184,7 +208,10 @@ if(isset($_REQUEST['spasiPassword']))
                 </ul> 
                
              </div><!--/tab-pane-->
-             <div class="tab-pane" id="settings">             <!-- Validaciju odradit za ovo ovde-->
+
+            
+
+              <div class="tab-pane" id="settings">             <!-- Validaciju odradit za ovo ovde-->
                     
                 
                   <hr>
@@ -250,6 +277,7 @@ if(isset($_REQUEST['spasiPassword']))
                       </div>
                 </form>
               </div>
+              </div>
                
               </div><!--/tab-pane-->
           </div><!--/tab-content-->
@@ -271,5 +299,8 @@ if(isset($_REQUEST['spasiPassword']))
 
 
 
+
 </html>
 <?php } else header("Location:index.html"); ?>
+
+</html>

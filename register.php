@@ -9,13 +9,9 @@
 
 
 
-
-
-
-
-
-
 require_once("config.php"); 
+
+
 
 $username_k=$_REQUEST['username'];
 $email_k=$_REQUEST['email'];
@@ -24,11 +20,13 @@ $password2_k=$_REQUEST['password2'];
 
 
 
+
 $passwordHash = hash(md5,$password1_k,false);
 
 
 $sql = "INSERT INTO korisnikAccount (username,password,rolaID)
 VALUES ('$username_k', '$passwordHash' ,1)";
+
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
@@ -58,7 +56,9 @@ if ($conn->query($sql) === TRUE) {
 	}
 
 
+
 mkdir("data/".$username_k."");
+
 
 
 
