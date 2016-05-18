@@ -8,9 +8,6 @@
 <?php
 
 
-
-
-
   session_start(); // Starting Session
   $error=''; // Variable To Store Error Message
   if (isset($_POST['submit'])) { 
@@ -24,6 +21,10 @@ print_r ($error);
   // Define $username and $password
   $username=$_POST['username'];
   $password=$_POST['password'];
+
+
+  $passwordHash = hash(md5,$password,false);
+
   // To protect MySQL injection for Security purpose
  /* $username = stripslashes($username);
   $password = stripslashes($password);
@@ -34,7 +35,10 @@ print_r ($error);
   // Selecting Database
   $db = mysql_select_db("3dpteam", $connection);
   // SQL query to fetch information of registerd users and finds user match.
-  $query = mysql_query("select * from korisnikAccount where password='$password' AND username='$username'", $connection);
+
+  $query = mysql_query("select * from korisnikAccount where password='$passwordHash' AND username='$username'", $connection);
+
+
   $rows = mysql_num_rows($query);
   if ($rows == 1) {
   $_SESSION['Username']=$username; 

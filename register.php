@@ -9,25 +9,9 @@
 
 
 
+require_once("config.php"); 
 
 
-
-
-
-
-
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "3dpteam";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password,$dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-} 
 
 $username_k=$_REQUEST['username'];
 $email_k=$_REQUEST['email'];
@@ -37,10 +21,12 @@ $password2_k=$_REQUEST['password2'];
 
 
 
+$passwordHash = hash(md5,$password1_k,false);
 
 
 $sql = "INSERT INTO korisnikAccount (username,password,rolaID)
-VALUES ('$username_k', '$password2_k' ,1)";
+VALUES ('$username_k', '$passwordHash' ,1)";
+
 
 if ($conn->query($sql) === TRUE) {
     echo "New record created successfully";
@@ -68,6 +54,12 @@ VALUES ('$datum','$email_k','$ID',TRUE)";
 if ($conn->query($sql) === TRUE) {
 	header("location: index.html");
 	}
+
+
+
+mkdir("data/".$username_k."");
+
+
 
 
 

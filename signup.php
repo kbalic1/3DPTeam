@@ -41,13 +41,20 @@
         </div>
         <div class="container">
             <div class="row">
-                <form   action=" register.php" method="post" onsubmit="return validate()" >
+
+                <form novalidate  action=" register.php" method="post" onsubmit="return validate()" >
+
+               
+
                     <div class="col-lg-4 col-lg-offset-4 text-center">
                         <div class="well well-sm"><strong><span class="glyphicon glyphicon-asterisk"></span>Obavezna polja</strong></div>
                         <div class="form-group tdp_form_group">
                             <label >Unesite korisničko ime</label>
                             <div class="input-group ">
-                                <input type="text" class="form-control" name="username" id="username" placeholder="Unesite korisničko ime" >
+
+                                <input type="text" class="form-control" name="username" id="username" placeholder="Unesite korisničko ime"  >
+
+
                                 <span class="input-group-addon"  ><span class="glyphicon glyphicon-asterisk"></span></span>  
                             </div>
                              <label id="validacijaUsername" class="textValidacija "></label>

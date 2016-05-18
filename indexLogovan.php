@@ -1,3 +1,6 @@
+
+<?php session_start(); if(isset($_SESSION['logon'])) { ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -23,17 +26,15 @@
 
 <body >
 
-<?php include('nav.php') ?>
+
+<?php require_once("config.php"); ?>
+
+<?php require_once('nav.php') ?>
+
 
 <?php 
 
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "3dpteam";
 
-// Create connection
-$conn = new mysqli($servername, $username, $password,$dbname);
 
 $username_k=$_SESSION['Username'];
 
@@ -41,6 +42,8 @@ $sql= "SELECT  `korisnikAcc_id`
 FROM  `korisnikaccount` 
 WHERE  `username` =  '$username_k' ";
 $result=$conn->query($sql);
+
+$ID=0;
 
 if ($result->num_rows > 0) {
    
@@ -71,6 +74,41 @@ if ($result1->num_rows > 0) {
 
 
 
+if(isset($_REQUEST['spasi']))
+{
+
+  $novoIme=$_REQUEST['ime'];
+  $novoPrezime=$_REQUEST['prezime'];
+  $noviMail=$_REQUEST['email'];
+
+
+  $sql="UPDATE `korisnik`
+        SET `ime`= \"$novoIme\",`prezime`=\"$novoPrezime\",`mail`=\"$noviMail\"
+        WHERE `korisnikAccID` = $ID";
+
+  $conn->query($sql);
+  
+}
+
+if(isset($_REQUEST['spasiPassword']))
+{
+
+
+  $noviPassword=$_REQUEST['password'];
+
+  $hashPassworda = hash(md5,$noviPassword,false);
+
+   $sql="UPDATE `korisnikaccount`
+        SET `password`= \"$hashPassworda\"
+        WHERE `korisnikAcc_ID` = $ID";
+
+  $conn->query($sql);
+  
+}
+
+
+
+
 
 
 ?>
@@ -78,7 +116,11 @@ if ($result1->num_rows > 0) {
 
 <div class="container bootstrap snippet">
     <div class="row">
+
+        
+
         <div class="col-sm-10"><h1><?php echo $_SESSION['Username']; ?></h1></div>
+
         <div class="col-sm-2"><a href="/users" class="pull-right"><img title="profile image" class="img-circle img-responsive" src="http://www.gravatar.com/avatar/28fd20ccec6865e2d5f0e1f4446eb7bf?s=100"></a></div>
     </div>
     <div class="row">
@@ -119,14 +161,27 @@ if ($result1->num_rows > 0) {
           <ul class="nav nav-tabs" id="myTab">
             <li class="active"><a href="#home" data-toggle="tab">Modeli</a></li>
             <li><a href="#messages" data-toggle="tab">Diskusije</a></li>
-            <li><a href="#settings" data-toggle="tab">Postavke</a></li>
+
+            <li><a href="#settings" data-toggle="tab">Licni podaci</a></li>
+            <li><a href="#pass" data-toggle="tab">Promjena passworda</a></li>
+          </ul>
+                 
+
+           
           </ul>
               
+
           <div class="tab-content">
             <div class="tab-pane active" id="home">
               <div class="table-responsive">
 
-                    MODELI
+
+                    <button class="dugmeDodaj">+ Dodaj novi model</button>
+
+                    <?php require_once('modeli.php') ?>
+
+                
+
 
                 <hr>
                 
@@ -153,23 +208,26 @@ if ($result1->num_rows > 0) {
                 </ul> 
                
              </div><!--/tab-pane-->
-             <div class="tab-pane" id="settings">
+
+            
+
+              <div class="tab-pane" id="settings">             <!-- Validaciju odradit za ovo ovde-->
                     
                 
                   <hr>
-                  <form class="form" action="##" method="post" id="registrationForm">
+                  <form class="form" action="indexLogovan.php" method="post" id="registrationForm">
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for="first_name"><h4>Ime</h4></label>
-                              <input type="text" class="form-control" name="first_name" id="first_name" placeholder="" title="enter your first name if any.">
+                              <input type="text" class="form-control" name="ime" id="first_name" value='<?php echo $ime ?>' title="enter your first name if any.">
                           </div>
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                             <label for="last_name"><h4>Prezime</h4></label>
-                              <input type="text" class="form-control" name="last_name" id="last_name" placeholder="" title="enter your last name if any.">
+                              <input type="text" class="form-control" name="prezime" id="last_name" value='<?php echo $prezime ?>' title="enter your last name if any.">
                           </div>
                       </div>
           
@@ -178,19 +236,27 @@ if ($result1->num_rows > 0) {
                           
                           <div class="col-xs-6">
                               <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" placeholder="example@email.com" title="enter your email.">
+                              <input type="email" class="form-control" name="email" id="email" value='<?php echo $mail ?>' title="enter your email.">
                           </div>
                       </div>
+                     
                       <div class="form-group">
-                          
-                          <div class="col-xs-6">
-                              <label for="email"><h4>Lokacija</h4></label>
-                              <input type="email" class="form-control" id="location" placeholder="" title="enter a location">
-                          </div>
+                           <div class="col-xs-12">
+                                <br>
+                                
+                                <button  id="spasi" name="spasi" type="submit" class="btn btn-primary btn-xl page-scroll"  >Spasi</button>
+                            </div>
                       </div>
+                </form>
+              </div>
+               <div class="tab-pane" id="pass">             <!-- Validaciju odradit za ovo ovde-->
+                    
+                
+                  <hr>
+                  <form class="form" action="indexLogovan.php" method="post" id="registrationForm">
                       <div class="form-group">
                           
-                          <div class="col-xs-6">
+                          <div class="col-xs-6 ">
                               <label for="password"><h4>Password</h4></label>
                               <input type="password" class="form-control" name="password" id="password" placeholder="" title="enter your password.">
                           </div>
@@ -205,11 +271,12 @@ if ($result1->num_rows > 0) {
                       <div class="form-group">
                            <div class="col-xs-12">
                                 <br>
-                                <button class="btn btn-lg btn-success" type="submit"><i class="glyphicon glyphicon-ok-sign"></i> Spasi</button>
                                 
+                                <button   name="spasiPassword" type="submit" class="btn btn-primary btn-xl page-scroll"  >Spasi</button>
                             </div>
                       </div>
                 </form>
+              </div>
               </div>
                
               </div><!--/tab-pane-->
@@ -231,5 +298,9 @@ if ($result1->num_rows > 0) {
 </body>
 
 
+
+
+</html>
+<?php } else header("Location:index.html"); ?>
 
 </html>
