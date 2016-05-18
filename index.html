@@ -20,11 +20,11 @@
     <link rel="stylesheet" href="css/logo.css" type="text/css">
 
     <script src="js/three.js"></script>
+    <script src="js/pozivniServis.js"></script>
   
 </head>
 
 <body >
-
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
 
@@ -467,8 +467,22 @@
 
                     <a href="#" id="moreModels" class="btn btn-primary btn-xl page-scroll">Prikaži još</a>
 
-                </div>  
+                </div> 
 
+
+               <!-- DROPDOWN IDE NA FORMU -->
+
+                <div class="input-group-btn select" id="select1">
+                    <button style="width:25%;" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                    <span class="selected">Izaberite državu...</span> <span class="caret"></span></button>
+                    <ul style="width:25%;" class="dropdown-menu option" role="menu">
+                    <li value="ba"><a class="dda" href="#">Bosna i Hercegovina</a></li>
+                    <li value="hr"><a class="dda" href="#">Hrvatska</a></li>
+                    <li value="rs"><a class="dda" href="#">Srbija</a></li>
+                    </ul>
+                </div>
+
+                <label id="brojTelefona"></label>
 
            <div class="container">
 
@@ -497,3 +511,19 @@
 
 
 </html>
+
+    <script type="text/javascript">
+
+    $('a.dda').click(function(e)
+{
+    e.preventDefault();
+});
+
+        $('body').on('click','.option li',function(){
+        var dvoslovniKod = $(this).attr('value');
+        dobaviPozivniBroj(dvoslovniKod);
+
+});
+        
+        
+    </script>
