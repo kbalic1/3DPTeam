@@ -2,8 +2,8 @@
 
 
 $servername = "localhost";
-$username = "root";
-$password = "";
+$username = "wtuser";
+$password = "passWt!123";
 $dbname = "3dpteam";
 
 // Create connection

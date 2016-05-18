@@ -7,7 +7,6 @@
 
 <?php
 
-
 if (!session_id()) session_start();
 if ($_SESSION['logon']){ 
 
@@ -18,7 +17,7 @@ if ($_SESSION['logon']){
 }
 else
 {
-  header("Location:index.html");
+  header("Location:indexGost.php");
 }
  
 
