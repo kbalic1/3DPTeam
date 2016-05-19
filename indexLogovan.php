@@ -1,4 +1,3 @@
-
  <?php session_start(); if(isset($_SESSION['logon'])) { ?>
 
 <!DOCTYPE html>
@@ -20,6 +19,7 @@
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/creative.css" type="text/css">
     <link rel="stylesheet" href="css/logo.css" type="text/css">
+    <link rel="stylesheet" href="css/main.css" type="text/css">
   
 
 </head>
@@ -303,5 +303,3 @@ if(isset($_REQUEST['spasiPassword']))
 
 </html>
 <?php  } else header("Location:index.html"); ?>
-
-</html>
