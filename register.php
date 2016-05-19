@@ -35,10 +35,12 @@ if ($conn->query($sql) === TRUE) {
 }
 
 $datum=date("Y.m.d");
+
 $sql= "SELECT  `korisnikAcc_id` 
 FROM  `korisnikaccount` 
 WHERE  `username` =  '$username_k'";
 $result=$conn->query($sql);
+
 
 if ($result->num_rows > 0) {
    

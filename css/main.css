@@ -125,6 +125,11 @@ footer{
 
 }
 
+#tdp_uploadModal {
+
+	height: 350px !important;
+}
+
 .facebookButton{
 	color: #3B5998;
 }
@@ -170,6 +175,24 @@ footer{
 
 }
 
+.tdp_form_group_upload {
+
+	margin-top: 5%;
+}
+
+.slikaUpload{
+
+
+}
+
+.objekatUpload {
+
+	margin-top: 10%;
+}
+
+.nazivUpload {
+	margin-top: 10%;
+}
 
 /*.loginTekst {
 

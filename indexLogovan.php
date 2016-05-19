@@ -1,5 +1,5 @@
 
- <?php /* session_start(); if(isset($_SESSION['logon'])) { */ ?>
+ <?php  session_start(); if(isset($_SESSION['logon'])) {  ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +20,8 @@
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/creative.css" type="text/css">
     <link rel="stylesheet" href="css/logo.css" type="text/css">
+     <script src="js/pozivniServis.js"></script>
+     <script src="js/jquery-1.11.3.min.js"></script>
   
 
 </head>
@@ -176,12 +178,13 @@ if(isset($_REQUEST['spasiPassword']))
             <div class="tab-pane active" id="home">
               <div class="table-responsive">
 
+                   <button  id="dugmeDodaj" class="btn btn-primary btn-xl page-scroll" data-toggle="modal" data-target="#myModalUpload" >+ Dodaj novi model</button>
+                   
+                    <div class="row modeli" id="models">
 
-                   <a href="dodavanjeModela.php" id="dugmeDodaj" class="btn btn-primary btn-xl page-scroll">+ Dodaj novi model</a>
+                    <?php require_once('modeliKorisnik.php') ?>
 
-                    <?php require_once('modeli.php') ?>
-
-                
+                  </div>
 
 
                 <hr>
@@ -235,11 +238,30 @@ if(isset($_REQUEST['spasiPassword']))
                       
                       <div class="form-group">
                           
-                          <div class="col-xs-6">
+                          <div class="col-xs-6 ">
                               <label for="email"><h4>Email</h4></label>
                               <input type="email" class="form-control" name="email" id="email" value='<?php echo $mail ?>' title="enter your email.">
                           </div>
                       </div>
+                       
+
+                      <div class = "form-group">
+                        <div class="col-xs-6 col-xs-offset-6">
+                          <div class="input-group-btn select" id="select1">
+                              <button style="width:25%;" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                              <span class="selected">Izaberite državu...</span> <span class="caret"></span></button>
+                              <ul style="width:25%;" class="dropdown-menu option" role="menu">
+                              <li value="ba"><a class="dda" href="#">Bosna i Hercegovina</a></li>
+                              <li value="hr"><a class="dda" href="#">Hrvatska</a></li>
+                              <li value="rs"><a class="dda" href="#">Srbija</a></li>
+                              </ul>
+                          </div>
+                          <label id="brojTelefona"></label>
+                        </div>
+
+                    </div>
+
+                
                      
                       <div class="form-group">
                            <div class="col-xs-12">
@@ -285,6 +307,66 @@ if(isset($_REQUEST['spasiPassword']))
 
         </div><!--/col-9-->
     </div><!--/row-->
+
+<div id="myModalUpload" class="modal fade" role="dialog">
+     <div class="modal-dialog">
+
+
+
+    <!-- Modal content-->
+        <div class="modal-content" id="tdp_uploadModal">
+
+          <div class = "modal-header text-center"> OBJAVITE VAS NOVI MODEL!</div>
+    
+            <div style="margin:5% 0 0 10%;">
+
+                    
+                     <div class="col-md-6">
+
+                          <label class = "slikaUpload">Odaberite sliku Vaseg modela: </label>
+                          <label class = "objekatUpload">Odaberite Vas model: </label>
+                          <label class = "nazivUpload">Unesite naziv modela</label>
+
+                    </div>
+                     <div class="col-md-6">
+
+                      <form action="upload.php" method="post" enctype="multipart/form-data">
+
+                        <input class="slikaUpload" type="file" name="fileToUpload" id="fileToUploadImg">
+                        
+                
+                         <input class="objekatUpload" type="file" name="fileToUploadObj" id="fileToUploadObj">
+               
+                        
+                        <div class="form-group tdp_form_group_upload nazivUpload">
+                           
+                            <div class="input-group ">
+
+                                <input type="text" class="form-control" name="nazivModela" id="nazivModela" placeholder="Naziv modela"  >
+
+
+                                
+                            </div>
+                             <label id="validacijaUsername" class="textValidacija "></label>
+                        </div>
+                       
+                        <input type="submit" name="submit" id="submit" value="Objavi" class="btn btn-primary centered tdp_button_margin ">
+                    
+                </form>
+
+                    </div>
+                    
+                        
+
+                     
+     
+             </div>
+
+
+        </div>
+
+     </div>
+    </div>
                          
 
 <?php include('footer.php') ?>
@@ -299,9 +381,24 @@ if(isset($_REQUEST['spasiPassword']))
 </body>
 
 
+    <script type="text/javascript">
+
+    $('a.dda').click(function(e)
+{
+    e.preventDefault();
+});
+
+        $('body').on('click','.option li',function(){
+        var dvoslovniKod = $(this).attr('value');
+        dobaviPozivniBroj(dvoslovniKod);
+
+});
+        
+        
+    </script>
 
 
 </html>
-<?php /* } else header("Location:index.html");*/ ?>
+<?php  } else header("Location:index.html"); ?>
 
-</html>
+

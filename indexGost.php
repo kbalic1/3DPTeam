@@ -512,7 +512,7 @@
 
                <!-- DROPDOWN IDE NA FORMU -->
 
-                <div class="input-group-btn select" id="select1">
+                <!-- <div class="input-group-btn select" id="select1">
                     <button style="width:25%;" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                     <span class="selected">Izaberite državu...</span> <span class="caret"></span></button>
                     <ul style="width:25%;" class="dropdown-menu option" role="menu">
@@ -522,7 +522,7 @@
                     </ul>
                 </div>
 
-                <label id="brojTelefona"></label>
+                <label id="brojTelefona"></label> -->
 
     <div class="container">
 
