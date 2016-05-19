@@ -10,7 +10,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>3D-Platforma</title>
+    <title>3D-Platforma(PROMJENA)</title>
 
     <link rel="stylesheet" href="css/main.css" type="text/css">
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
