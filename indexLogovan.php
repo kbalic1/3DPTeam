@@ -1,5 +1,6 @@
 
- <?php  session_start(); if(isset($_SESSION['logon'])) {  ?>
+ <?php session_start(); if(isset($_SESSION['logon'])) { ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,8 +21,12 @@
     <link href='http://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="css/creative.css" type="text/css">
     <link rel="stylesheet" href="css/logo.css" type="text/css">
+
      <script src="js/pozivniServis.js"></script>
      <script src="js/jquery-1.11.3.min.js"></script>
+
+    <link rel="stylesheet" href="css/main.css" type="text/css">
+
   
 
 </head>
@@ -398,7 +403,8 @@ if(isset($_REQUEST['spasiPassword']))
     </script>
 
 
+
+
 </html>
 <?php  } else header("Location:index.html"); ?>
-
 

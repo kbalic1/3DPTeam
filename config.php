@@ -1,9 +1,15 @@
 <?php
 
-
+/*
 $servername = "localhost";
+
 $username = "root";
-$password = "";
+$password = "";*/
+
+
+$servername = "127.6.241.130";
+$username = "adminnNICk35";
+$password = "bBiYhDrUQmFA";
 $dbname = "3dpteam";
 
 // Create connection
