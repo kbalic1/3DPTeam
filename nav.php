@@ -1,5 +1,5 @@
 
-    <?php /*session_start();*/ ?>
+    <?php session_start(); ?>
 
     <div id="navDiv" >
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">

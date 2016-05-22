@@ -89,6 +89,34 @@ if(isset($_REQUEST['spasi']))
   $novoPrezime=$_REQUEST['prezime'];
   $noviMail=$_REQUEST['email'];
 
+  $nizIme = str_split($novoIme);
+  $nizPrezime = str_split($novoPrezime);
+  $nizEmail = str_split($noviMail);
+
+  for($i=0;$i<strlen($novoIme);$i++)
+  {
+
+      if($nizIme[$i]=="<" || $nizIme[$i]==">")
+       { header("location: erorrValidacija.php"); return; }
+
+  }
+
+  for($i=0;$i<strlen($novoPrezime);$i++)
+  {
+
+      if($nizPrezime[$i]=="<" || $nizPrezime[$i]==">")
+       {header("location: erorrValidacija.php"); return; }
+
+  }
+
+  for($i=0;$i<strlen($novoPrezime);$i++)
+  {
+
+      if($nizEmail[$i]=="<" || $nizEmail[$i]==">")
+       { header("location: erorrValidacija.php"); return; }
+
+  }
+
 
   $sql="UPDATE `korisnik`
         SET `ime`= \"$novoIme\",`prezime`=\"$novoPrezime\",`mail`=\"$noviMail\"
@@ -224,19 +252,22 @@ if(isset($_REQUEST['spasiPassword']))
                     
                 
                   <hr>
-                  <form class="form" action="indexLogovan.php" method="post" id="registrationForm">
+                  <form  novalidate class="form" action="indexLogovan.php" method="post" id="registrationForm" onsubmit="return validate()">
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                               <label for="first_name"><h4>Ime</h4></label>
                               <input type="text" class="form-control" name="ime" id="first_name" value='<?php echo $ime ?>' title="enter your first name if any.">
+                              <label id="validacijaIme" class="textValidacija"></label>
                           </div>
+                             
                       </div>
                       <div class="form-group">
                           
                           <div class="col-xs-6">
                             <label for="last_name"><h4>Prezime</h4></label>
                               <input type="text" class="form-control" name="prezime" id="last_name" value='<?php echo $prezime ?>' title="enter your last name if any.">
+                              <label id="validacijaPrezime" class="textValidacija"></label>
                           </div>
                       </div>
           
@@ -246,16 +277,17 @@ if(isset($_REQUEST['spasiPassword']))
                           <div class="col-xs-6 ">
                               <label for="email"><h4>Email</h4></label>
                               <input type="email" class="form-control" name="email" id="email" value='<?php echo $mail ?>' title="enter your email.">
+                              <label id="validacijaEmail" class="textValidacija"></label>
                           </div>
                       </div>
                        
 
                       <div class = "form-group">
-                        <div class="col-xs-6 col-xs-offset-6">
+                        <div class="col-xs-6">
                           <div class="input-group-btn select" id="select1">
-                              <button style="width:25%;" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                              <button style="width:50%;" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
                               <span class="selected">Izaberite državu...</span> <span class="caret"></span></button>
-                              <ul style="width:25%;" class="dropdown-menu option" role="menu">
+                              <ul style="width:50%;" class="dropdown-menu option" role="menu">
                               <li value="ba"><a class="dda" href="#">Bosna i Hercegovina</a></li>
                               <li value="hr"><a class="dda" href="#">Hrvatska</a></li>
                               <li value="rs"><a class="dda" href="#">Srbija</a></li>
@@ -335,7 +367,7 @@ if(isset($_REQUEST['spasiPassword']))
                     </div>
                      <div class="col-md-6">
 
-                      <form action="upload.php" method="post" enctype="multipart/form-data">
+                      <form novalidate action="upload.php" method="post" enctype="multipart/form-data" onsubmit="return validateNoviModel()">
 
                         <input class="slikaUpload" type="file" name="fileToUpload" id="fileToUploadImg">
                         
@@ -348,7 +380,7 @@ if(isset($_REQUEST['spasiPassword']))
                             <div class="input-group ">
 
                                 <input type="text" class="form-control" name="nazivModela" id="nazivModela" placeholder="Naziv modela"  >
-
+                                <label id="validacijaNazivModela" class="textValidacija"></label>
 
                                 
                             </div>
@@ -380,10 +412,19 @@ if(isset($_REQUEST['spasiPassword']))
    
     <script src="js/jquery.js"></script>
     <script src="js/bootstrap.js"></script>
-
+    <script src="js/validacijaUnosaLicnihPodataka.js"></script>
 
 
 </body>
+
+
+
+
+
+
+
+
+</script>
 
 
     <script type="text/javascript">
@@ -406,5 +447,5 @@ if(isset($_REQUEST['spasiPassword']))
 
 
 </html>
-<?php  } else header("Location:index.html"); ?>
+<?php  } else header("Location:index.php"); ?>
 

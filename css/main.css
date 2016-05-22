@@ -26,6 +26,7 @@
 
 #modelFilter ul li{
 	border:1px solid #F05F40;
+	border-radius: 5px;
 	padding: 4px;
 	display: inline-block;	
 }
@@ -56,6 +57,7 @@ footer{
     -moz-width:55%;
 }
 
+
 .infoDiv {
 
 	display: inline-block;
@@ -65,6 +67,31 @@ footer{
 	margin-top: 50px;
 	float: right;
 	background-image: url(../img/modeli2.jpg);
+	background-size: 100% 100%;
+    background-repeat: no-repeat;
+	padding-top: 8%;
+	text-align: center;
+	-moz-width:50%;
+}
+
+.pregledModel {
+	display: inline-block;
+	height: 300px;
+	width: 30%;
+	/*background-color: red;*/
+	float: left;
+    -moz-width:55%;
+}
+
+
+
+.infoModelDiv {
+
+	display: inline-block;
+	background-color: orange;
+	width: 70%;
+	height: 500px;
+	float: right;
 	background-size: 100% 100%;
     background-repeat: no-repeat;
 	padding-top: 8%;
@@ -210,6 +237,8 @@ footer{
 	color: white;
 }
 
+
+
 #mainNav {
 
 	background-color: #ee4b28;
@@ -301,6 +330,13 @@ footer{
 
 }
 
+.error {
+
+	color: red;
+}
+
+
+
 .tdp_form_group {
 	/*margin-bottom: 0 !important;*/
 }
@@ -340,7 +376,18 @@ footer{
 	display:list-item;
 }
 
+.infoModelDiv {
+
+	display:list-item;
+
+}
+
 .wellcomeModel {
+
+	display: list-item;
+}
+
+.pregledModel {
 
 	display: list-item;
 }
@@ -359,7 +406,16 @@ footer{
 		display: none;
 	}
 
+	.pregledModel {
+		display: none;
+	}
+
 	.infoDiv {
+
+		width: 100%;
+	}
+
+	.infoModelDiv {
 
 		width: 100%;
 	}

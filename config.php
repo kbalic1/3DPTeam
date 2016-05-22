@@ -1,17 +1,17 @@
 <?php
 
-/*
+
 $servername = "localhost";
-
+$dbname = "3dpteam";
 $username = "root";
-$password = "";*/
+$password = "";
 
 
-$servername = "127.6.241.130";
+/*$servername = "127.6.241.130";
 $username = "adminnNICk35";
 $password = "bBiYhDrUQmFA";
 $dbname = "3dpteam";
-
+*/
 // Create connection
 $conn = new mysqli($servername, $username, $password,$dbname);
 
