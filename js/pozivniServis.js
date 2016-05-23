@@ -10,7 +10,10 @@ function dobaviPozivniBroj(dvoslovniKod)
             var pozivniBroj = JSON.parse(json);
             var pozivniBrojDrzave = pozivniBroj[0].callingCodes;
 
-            document.getElementById("brojTelefona").innerHTML = "(+" + pozivniBrojDrzave + ")";
+            document.getElementById("brojTelefona").value = "+ " + pozivniBrojDrzave + " ";
+            document.getElementById("brojTelefona").focus();
+
+            //document.getElementById("brojTelefona").innerHTML = pozivniBrojDrzave + "/";
         }
             
         if (ajax.readyState == 4 && ajax.status == 404)
