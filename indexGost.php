@@ -1,3 +1,5 @@
+<?php  session_start();  ?>
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -10,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>3D-Platforma(11111)</title>
+    <title>3D-Platforma</title>
 
     <link rel="stylesheet" href="css/main.css" type="text/css">
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
@@ -126,7 +128,7 @@
                     <div class="col-md-1">
                     </div>
 
-                    <div class="col-md-5 modal-body" style="display:inline-block">
+                    <div class="col-md-5 modal-body" style="display:inline-block;">
                        <form  novalidate action="provjeri.php" method="post">
                         <div class=" text-center">
                         
@@ -145,6 +147,20 @@
                                 <span class="input-group-addon"><span class="glyphicon glyphicon-asterisk"></span></span>
                             </div>
                         </div>
+
+                        <?php 
+                           
+                        if(isset($_SESSION['errorLogin'])) 
+                           {
+
+
+                                print "<p id='tdp_errorLoginStyle'><span>".$_SESSION["errorLogin"]."</span></p>";
+                                
+                                //$_SESSION["errorLogin"] = "";
+                            } 
+
+                        ?>
+
                         <a href="#">Zaboravili ste šifru?</a>
                        
                         <input type="submit" name="submit" id="submit" value="Prijavi se" class="btn btn-primary centered">
@@ -555,9 +571,9 @@
     <script type="text/javascript">
 
     $('a.dda').click(function(e)
-{
-    e.preventDefault();
-});
+        {
+            e.preventDefault();
+        });
 
         $('body').on('click','.option li',function(){
         var dvoslovniKod = $(this).attr('value');
@@ -567,3 +583,25 @@
         
         
     </script>
+
+<?php 
+        if(isset($_SESSION['errorLogin']))
+        {
+            if($_SESSION['errorLogin'] != "")
+            {
+
+                print "<script type='text/javascript'>  
+                    $('#myModal').modal('show');
+                    
+               </script>";
+
+               /*print "<script type='text/javascript'>  
+                    $( document ).ready(function() {
+                        $('#myModal').modal('show');
+                    });
+               </script>";*/
+            }
+        } 
+
+        session_destroy();
+?>

@@ -25,9 +25,9 @@
      <script src="js/pozivniServis.js"></script>
      <script src="js/jquery-1.11.3.min.js"></script>
 
-    <link rel="stylesheet" href="css/main.css" type="text/css">
+     <script src="js/provjeraNotifikacija.js"></script>
 
-  
+    <link rel="stylesheet" href="css/main.css" type="text/css">
 
 </head>
 
@@ -59,9 +59,7 @@ if ($result->num_rows > 0) {
     }
 }
 
-
-
-$sql ="SELECT  `ime`,`prezime`,`datum`,`mail`
+$sql ="SELECT  `ime`,`prezime`,`datum`,`mail`, `BrojTelefona`
 FROM `korisnik` 
 WHERE `korisnikAccID` = '$ID' ";
 
@@ -71,10 +69,16 @@ $result1=$conn->query($sql);
 if ($result1->num_rows > 0) {
    
     while($row = $result1->fetch_assoc()) {
+        $ime = "";
+        $prezime = "";
+
         $ime= $row["ime"];
         $prezime=$row["prezime"];
-        $datum=$row["datum"];
+        $datumStr=$row["datum"];
         $mail=$row["mail"];
+        $brojTelefona=$row["BrojTelefona"];
+
+        $datum = strtotime($datumStr);
 
     }
 
@@ -145,13 +149,10 @@ if(isset($_REQUEST['spasiPassword']))
   
 }
 
-
-
-
-
-
 ?>
 
+<div id="notifikacije">
+</div>
 
 <div class="container bootstrap snippet">
     <div class="row">
@@ -167,9 +168,10 @@ if(isset($_REQUEST['spasiPassword']))
               
           <ul class="list-group">
             <li class="list-group-item text-muted">Osnovne informacije</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Registrovan</strong></span><?php echo $datum ?></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Zadnji put online</strong></span> Juce</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Ime i Prezime</strong></span> <?php echo $ime; echo " "; echo $prezime ?></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Registrovan</strong></span><?php echo date('d.m.Y.',$datum); ?></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Zadnji put online</strong></span> Jučer</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Ime i Prezime</strong></span><span><p><?php echo $ime; echo " "; echo $prezime ?></p></span></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Broj telefona</strong></span><span><p><?php echo $brojTelefona; ?></p></span></li>
             
           </ul> 
                

@@ -133,6 +133,13 @@ footer{
 
 }
 
+#notifikacije{
+	position: absolute;
+	top:10%;
+	right: 2%;
+	z-index: 10000;
+	width:20%;
+}
 
 #signup {
 
@@ -147,9 +154,14 @@ footer{
 
 #tdp_loginModal {
 
-	height: 250px !important;
+	min-height: 250px !important;
+	max-height: 500px;
+}
 
-
+#tdp_errorLoginStyle
+{
+	color: red;
+	font-size: 12px;
 }
 
 #tdp_uploadModal {

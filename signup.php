@@ -42,7 +42,7 @@
         <div class="container">
             <div class="row">
 
-                <form novalidate  action=" register.php" method="post" onsubmit="return validate()" >
+                <form novalidate  action="register.php" method="post" onsubmit="return validate()" >
 
                
 
