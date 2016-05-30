@@ -61,7 +61,7 @@ if ($result->num_rows > 0) {
 
 
 
-$sql ="SELECT  `ime`,`prezime`,`datum`,`mail`
+$sql ="SELECT  `ime`,`prezime`,`datum`,`mail`,`korisnik_id`
 FROM `korisnik` 
 WHERE `korisnikAccID` = '$ID' ";
 
@@ -75,6 +75,7 @@ if ($result1->num_rows > 0) {
         $prezime=$row["prezime"];
         $datum=$row["datum"];
         $mail=$row["mail"];
+        $korisnikovID=$row["korisnik_id"];
 
     }
 
@@ -174,14 +175,26 @@ if(isset($_REQUEST['spasiPassword']))
             <div class="panel-heading">Website <i class="fa fa-link fa-1x"></i></div>
             <div class="panel-body"><a href="http://bootnipets.com">bootnipets.com</a></div>
           </div>-->
+
+          <?php
+
+           $modeli = $conn->query("select Count(*) from objekat where KorisnikObjavioID= '$korisnikovID' AND Aktivan=1 order by DatumObjave DESC;");
+
+           if ($modeli->num_rows > 0) {
+                   
+                    while($row = $modeli->fetch_assoc()) {
+                        $brojModela= $row["Count(*)"];
+                    }
+                }
+          ?>
           
           
           <ul class="list-group">
             <li class="list-group-item text-muted">Aktivnost <i class="fa fa-dashboard fa-1x"></i></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Uploada</strong></span> 125</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Odgovora</strong></span> 13</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Tema</strong></span> 37</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Pratitelja</strong></span> 78</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Uploada</strong></span> <?php echo $brojModela?></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Odgovora</strong></span> /</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Tema</strong></span> /</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Pratitelja</strong></span> /</li>
           </ul> 
                
           <!--<div class="panel panel-default">
@@ -361,8 +374,13 @@ if(isset($_REQUEST['spasiPassword']))
                      <div class="col-md-6">
 
                           <label class = "slikaUpload">Odaberite sliku Vaseg modela: </label>
-                          <label class = "objekatUpload">Odaberite Vas model: </label>
+                          <label class = "objekatUpload">Odaberite Vas model (.obj i .mtl): </label>
+                          <label class = "objekatUpload">Selektirajte teksture Vaseg modela </label>
+
                           <label class = "nazivUpload">Unesite naziv modela</label>
+                          <label class = "nazivUpload">Unesite opis modela</label>
+                          <label class = "mogucnostKomentara">Mogucnost komentarisanja</label>
+
 
                     </div>
                      <div class="col-md-6">
@@ -373,6 +391,11 @@ if(isset($_REQUEST['spasiPassword']))
                         
                 
                          <input class="objekatUpload" type="file" name="fileToUploadObj" id="fileToUploadObj">
+                         <input class="objekatUpload1" type="file" name="fileToUploadObj1" id="fileToUploadObj1">
+
+                         <input id='upload' name="upload[]" class="objekatUpload" type="file" multiple="multiple" />
+
+
                
                         
                         <div class="form-group tdp_form_group_upload nazivUpload">
@@ -386,6 +409,10 @@ if(isset($_REQUEST['spasiPassword']))
                             </div>
                              <label id="validacijaUsername" class="textValidacija "></label>
                         </div>
+
+                          <textarea id='opisModela' name='opisModela' class='form-control tdp_opis' rows='3'></textarea>
+
+                           <input type="checkbox" name="mogucnostKomentara" id="mogucnostKomentara" value="">
                        
                         <input type="submit" name="submit" id="submit" value="Objavi" class="btn btn-primary centered tdp_button_margin ">
                     

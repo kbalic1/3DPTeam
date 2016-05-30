@@ -120,7 +120,13 @@ function validateNoviModel ()
                 if(!validate)
                 document.getElementById("validacijaNazivModela").innerHTML="Ne znamo sta je namjera, ali te znakove ne dopustamo." ;
 
-            }  
+            } 
+             if(nazivModela.value== "")
+            {
+                document.getElementById("validacijaNazivModela").innerHTML="Polje Naziv je obavezno." ;
+                validate=false;
+
+            }
 
     
             

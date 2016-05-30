@@ -4,7 +4,15 @@
 
     require_once("config.php");
 
+      if(isset( $_SESSION['Username']))
+      {
         $username= $_SESSION['Username'];
+      }
+      else
+      {
+        $username=$username_k;
+      }
+        
 
       $sql= "SELECT  `korisnikAcc_id` 
       FROM  `korisnikaccount` 
@@ -19,9 +27,21 @@
           }
       }
 
+       $sql= "SELECT  `korisnik_id` 
+                FROM  `korisnik` 
+                WHERE  `korisnikAccID` =  '".$ID."' ";
+      $result=$conn->query($sql);
+
+      if ($result->num_rows > 0) {
+         
+          while($row = $result->fetch_assoc()) {
+              $korisnikovID= $row["korisnik_id"];
+          }
+      }
+
     mysqli_real_query($conn, "set names utf8;");
      
-     $modeli = $conn->query("select * from objekat where KorisnikObjavioID= '$ID';");
+     $modeli = $conn->query("select * from objekat where KorisnikObjavioID= '$korisnikovID' AND Aktivan=1 order by DatumObjave DESC;");
      if (!$modeli) {
           $greska = $conn->errorInfo();
           print "SQL greška: " . $greska[2];
@@ -95,10 +115,10 @@
 
         print "<div class='col-sm-4 col-lg-4 col-md-4'>";
         print "<div class='thumbnail'>";
-        print "<img src='".$model["SrcSlika"]."' class='homeModelImg' alt=''>".
+        print "<img src='".$model["SrcSlika"]."' class='homeModelImg' alt='' onclick='otvoriModel(".$model["ObjekatID"].")'>".
               "<div class='caption'>".
               "<h4 class='pull-right'>".$model["BrojPregleda"]." pregleda</h4>".
-              "<h4><a href='#'>".$model["Naziv"]."</a></h4>".
+              "<h4><a href='pregledModela.php?id=".$model["ObjekatID"]."'>".$model["Naziv"]."</a></h4>".
               "<p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>". // zabetonirani hash tagovi bice poslije
               "<span class='uploadedAgo'></span>".
               "<input type='hidden' class='uploadDateTime' value='".$model["DatumObjave"]."' />".
@@ -117,3 +137,13 @@
 
     // print "</div>" // zatvaranje row modeli models diva (containera za modele)
     ?>
+
+
+    <script type="text/javascript">
+
+    function otvoriModel(x){
+
+      document.location.href='pregledModela.php?id=' + x;
+    }
+
+    </script>

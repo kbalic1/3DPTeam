@@ -3,7 +3,7 @@
     require_once("config.php");
     mysqli_real_query($conn, "set names utf8;");
      
-     $modeli = $conn->query("select * from objekat;");
+     $modeli = $conn->query("select * from objekat where Aktivan = 1;");
      if (!$modeli) {
           $greska = $conn->errorInfo();
           print "SQL greška: " . $greska[2];
@@ -77,10 +77,10 @@
 
         print "<div class='col-sm-4 col-lg-4 col-md-4'>";
         print "<div class='thumbnail'>";
-        print "<img src='".$model["SrcSlika"]."' class='homeModelImg' alt=''>".
+        print "<img src='".$model["SrcSlika"]."' class='homeModelImg' alt='' onclick='otvoriModel(".$model["ObjekatID"].")'>".
               "<div class='caption'>".
               "<h4 class='pull-right'>".$model["BrojPregleda"]." pregleda</h4>".
-              "<h4><a href='#'>".$model["Naziv"]."</a></h4>".
+              "<h4><a href='pregledModela.php?id=".$model["ObjekatID"]."'>".$model["Naziv"]."</a></h4>".
               "<p>#Ovdje #ce #biti #tagovi #za #3D #modele</p>". // zabetonirani hash tagovi bice poslije
               "<span class='uploadedAgo'></span>".
               "<input type='hidden' class='uploadDateTime' value='".$model["DatumObjave"]."' />".
@@ -99,3 +99,13 @@
 
     // print "</div>" // zatvaranje row modeli models diva (containera za modele)
     ?>
+
+
+    <script type="text/javascript">
+
+    function otvoriModel(x){
+
+      document.location.href='pregledModela.php?id=' + x;
+    }
+
+    </script>

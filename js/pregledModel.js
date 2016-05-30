@@ -1,6 +1,6 @@
    var loadmanager = new THREE.LoadingManager();
       loadmanager.onProgress=function(item,loaded,total){
-        console.log(item,loaded,total);
+        
       }
 
       var rekObj = null;
@@ -42,18 +42,26 @@
 
             renderer = new THREE.WebGLRenderer({ alpha: true });
 
-      
-            camera.position.z=2.5;
+            camera.position.z=9.3;
+            window.addEventListener('resize', function () {
+
+            camera.aspect = modelDiv.clientWidth / modelDiv.clientHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(modelDiv.clientWidth,modelDiv.clientHeight);
+            renderer.render(scene, camera);
+          
+          }, false);
+            //camera.position.z=2.5;
             scene.fog = new THREE.Fog( 0xaaaaaa, 0.001, 80 );
 
             renderer.setSize( modelDiv.clientWidth, modelDiv.clientHeight);
-            renderer.setClearColor( 0x000000, 1);
+            renderer.setClearColor( 0xffffff, 1);
             modelDiv.appendChild(renderer.domElement);
 
             modelDiv.addEventListener('mouseout',function(){controls1.reset();});
 
             var spotLight = new THREE.PointLight( 0xeeffff,3,220,2 );
-              spotLight.position.set( 0, 0, 20 );
+              spotLight.position.set( 0, 0, 50 );
               spotLight.castShadow = false;
               spotLight.shadowMapWidth = 512;
               spotLight.shadowMapHeight = 512;
@@ -78,14 +86,19 @@
 
             var loader1 = new THREE.OBJMTLLoader(loadmanager);
             // load a resource
-       
+            
+            var putObj=  document.getElementById("putObj").textContent;
+            var putMtl=  document.getElementById("putMtl").textContent;
+            
 
             loader1.load(
-              'axeisko.obj',
-              'axeisko.mtl',
+             putObj,
+             putMtl,
               function(object12){
                 object2=object12;
-                object2.scale.set(8,8,8);
+                object2.scale.set(5,5,5);
+                object2.position.x=-1;
+              object2.rotation.x=3.14/2;
                 //object.position.z=-1;
                scene.add(object2);              
               });

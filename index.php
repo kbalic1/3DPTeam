@@ -5,7 +5,32 @@
 <title>Untitled Document</title>
 </head>
 
+
+<?php require_once("config.php"); ?>
+
 <?php
+
+$sql= "SELECT  `brojPosjeta` 
+FROM  `administracija` 
+WHERE  `ID` =  1";
+$result=$conn->query($sql);
+
+
+if ($result->num_rows > 0) {
+   
+    while($row = $result->fetch_assoc()) {
+        $broj= $row["brojPosjeta"];
+    }
+}
+
+$broj=$broj+1;
+
+  $sql="UPDATE `administracija`
+        SET `brojPosjeta`= \"$broj\"
+        WHERE `ID` = 1";
+
+  $conn->query($sql);
+
 
 if (!session_id()) session_start();
 if ($_SESSION['logon']){ 
