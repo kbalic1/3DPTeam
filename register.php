@@ -24,7 +24,7 @@ $password2_k=$_REQUEST['password2'];
 $passwordHash = hash(md5,$password1_k,false);
 
 
-$sql = "INSERT INTO korisnikAccount (username,password,rolaID)
+$sql = "INSERT INTO korisnikaccount (username,password,rolaID)
 VALUES ('$username_k', '$passwordHash' ,1)";
 
 
@@ -54,7 +54,7 @@ if ($result->num_rows > 0) {
 $sql = "INSERT INTO korisnik (datum,mail,korisnikAccID,aktivan)
 VALUES ('$datum','$email_k','$ID',TRUE)";
 if ($conn->query($sql) === TRUE) {
-	header("location: index.html");
+	header("location: index.php");
 	}
 
 

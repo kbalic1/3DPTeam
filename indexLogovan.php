@@ -25,9 +25,9 @@
      <script src="js/pozivniServis.js"></script>
      <script src="js/jquery-1.11.3.min.js"></script>
 
-    <link rel="stylesheet" href="css/main.css" type="text/css">
+     <script src="js/provjeraNotifikacija.js"></script>
 
-  
+    <link rel="stylesheet" href="css/main.css" type="text/css">
 
 </head>
 
@@ -61,7 +61,8 @@ if ($result->num_rows > 0) {
 
 
 
-$sql ="SELECT  `ime`,`prezime`,`datum`,`mail`,`korisnik_id`
+
+$sql ="SELECT  `ime`,`prezime`,`datum`,`mail`,`korisnik_id`,`BrojTelefona`
 FROM `korisnik` 
 WHERE `korisnikAccID` = '$ID' ";
 
@@ -71,11 +72,16 @@ $result1=$conn->query($sql);
 if ($result1->num_rows > 0) {
    
     while($row = $result1->fetch_assoc()) {
+        $ime = "";
+        $prezime = "";
+
         $ime= $row["ime"];
         $prezime=$row["prezime"];
-        $datum=$row["datum"];
+        $datumStr=$row["datum"];
         $mail=$row["mail"];
         $korisnikovID=$row["korisnik_id"];
+        $brojTelefona=$row["BrojTelefona"];
+        $datum = strtotime($datumStr);
 
     }
 
@@ -89,10 +95,13 @@ if(isset($_REQUEST['spasi']))
   $novoIme=$_REQUEST['ime'];
   $novoPrezime=$_REQUEST['prezime'];
   $noviMail=$_REQUEST['email'];
+  $noviBrojTelefona=$_REQUEST['brojTelefona'];
+  
 
   $nizIme = str_split($novoIme);
   $nizPrezime = str_split($novoPrezime);
   $nizEmail = str_split($noviMail);
+  $nizBrojTel = str_split($noviBrojTelefona);
 
   for($i=0;$i<strlen($novoIme);$i++)
   {
@@ -120,7 +129,7 @@ if(isset($_REQUEST['spasi']))
 
 
   $sql="UPDATE `korisnik`
-        SET `ime`= \"$novoIme\",`prezime`=\"$novoPrezime\",`mail`=\"$noviMail\"
+        SET `ime`= \"$novoIme\",`prezime`=\"$novoPrezime\",`mail`=\"$noviMail\", `BrojTelefona` = \"$noviBrojTelefona\"
         WHERE `korisnikAccID` = $ID";
 
   $conn->query($sql);
@@ -143,13 +152,10 @@ if(isset($_REQUEST['spasiPassword']))
   
 }
 
-
-
-
-
-
 ?>
 
+<div id="notifikacije">
+</div>
 
 <div class="container bootstrap snippet">
     <div class="row">
@@ -165,9 +171,10 @@ if(isset($_REQUEST['spasiPassword']))
               
           <ul class="list-group">
             <li class="list-group-item text-muted">Osnovne informacije</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Registrovan</strong></span><?php echo $datum ?></li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Zadnji put online</strong></span> Juce</li>
-            <li class="list-group-item text-right"><span class="pull-left"><strong>Ime i Prezime</strong></span> <?php echo $ime; echo " "; echo $prezime ?></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Registrovan</strong></span><?php echo date('d.m.Y.',$datum); ?></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Zadnji put online</strong></span> Jučer</li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Ime i Prezime</strong></span><span><p><?php echo $ime; echo " "; echo $prezime ?></p></span></li>
+            <li class="list-group-item text-right"><span class="pull-left"><strong>Broj telefona</strong></span><span><p><?php echo $brojTelefona; ?></p></span></li>
             
           </ul> 
                
@@ -265,21 +272,25 @@ if(isset($_REQUEST['spasiPassword']))
                     
                 
                   <hr>
-                  <form  novalidate class="form" action="indexLogovan.php" method="post" id="registrationForm" onsubmit="return validate()">
+                  <div class="row">
+
+                  <div class="col-md-2"></div>
+
+                  <form novalidate class="form col-md-8" action="indexLogovan.php" method="post" id="registrationForm" onsubmit="return validate()">
                       <div class="form-group">
                           
-                          <div class="col-xs-6">
+                          <div class="col-xs-12">
                               <label for="first_name"><h4>Ime</h4></label>
-                              <input type="text" class="form-control" name="ime" id="first_name" value='<?php echo $ime ?>' title="enter your first name if any.">
+                              <input type="text" class="form-control" name="ime" id="first_name" value='<?php echo $ime ?>' title="Unesite vaše ime.">
                               <label id="validacijaIme" class="textValidacija"></label>
                           </div>
                              
                       </div>
                       <div class="form-group">
                           
-                          <div class="col-xs-6">
+                          <div class="col-xs-12">
                             <label for="last_name"><h4>Prezime</h4></label>
-                              <input type="text" class="form-control" name="prezime" id="last_name" value='<?php echo $prezime ?>' title="enter your last name if any.">
+                              <input type="text" class="form-control" name="prezime" id="last_name" value='<?php echo $prezime ?>' title="Unesite vaše prezime.">
                               <label id="validacijaPrezime" class="textValidacija"></label>
                           </div>
                       </div>
@@ -287,27 +298,34 @@ if(isset($_REQUEST['spasiPassword']))
                       
                       <div class="form-group">
                           
-                          <div class="col-xs-6 ">
+                          <div class="col-xs-12">
                               <label for="email"><h4>Email</h4></label>
-                              <input type="email" class="form-control" name="email" id="email" value='<?php echo $mail ?>' title="enter your email.">
+                              <input type="email" class="form-control" name="email" id="email" value='<?php echo $mail ?>' title="Unesite vaš email.">
                               <label id="validacijaEmail" class="textValidacija"></label>
                           </div>
                       </div>
                        
-
-                      <div class = "form-group">
-                        <div class="col-xs-6">
-                          <div class="input-group-btn select" id="select1">
-                              <button style="width:50%;" type="button" class="btn dropdown-toggle" data-toggle="dropdown">
-                              <span class="selected">Izaberite državu...</span> <span class="caret"></span></button>
-                              <ul style="width:50%;" class="dropdown-menu option" role="menu">
+                      <div class="form-group">
+                        <label for="telphone_number"><h4>Broj telefona</h4></label>
+                        <div class="row">
+                          <div class="input-group-btn">
+                              <button type="button" class="btn dropdown-toggle" data-toggle="dropdown">
+                              <span>Izaberite državu...</span> <span class="caret"></span></button>
+                              <ul class="dropdown-menu option" role="menu">
                               <li value="ba"><a class="dda" href="#">Bosna i Hercegovina</a></li>
                               <li value="hr"><a class="dda" href="#">Hrvatska</a></li>
                               <li value="rs"><a class="dda" href="#">Srbija</a></li>
                               </ul>
                           </div>
-                          <label id="brojTelefona"></label>
+                          <!--  <label id="brojTelefona"></label>-->
+                       
+                        <div class="col-sm-6">
+                              <input type="text" class="form-control" name="brojTelefona" id="brojTelefona" title="Unesite vaš broj.">
+                              <label id="" class="textValidacija"></label>
+                          </div>
+
                         </div>
+
 
                     </div>
 
@@ -321,6 +339,8 @@ if(isset($_REQUEST['spasiPassword']))
                             </div>
                       </div>
                 </form>
+                      <div class="col-md-2"></div>
+                 </div>
               </div>
                <div class="tab-pane" id="pass">             <!-- Validaciju odradit za ovo ovde-->
                     

@@ -4,10 +4,10 @@
 $servername = "localhost";
 $dbname = "3dpteam";
 $username = "root";
-$password = "";
+$password = "Sitim12";
 
-
-/*$servername = "127.6.241.130";
+/*
+$servername = "127.6.241.130";
 $username = "adminnNICk35";
 $password = "bBiYhDrUQmFA";
 $dbname = "3dpteam";
