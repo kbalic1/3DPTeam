@@ -7,13 +7,16 @@
 		$statusna = "logovan";
 		require_once("config.php");
     	mysqli_real_query($conn, "set names utf8;");
-     
-	    $modeli = $conn->query("select Naziv, ObjekatID, BrojNovihKomentara from 3dpteam.objekat where KorisnikObjavioID = 3;");
+
+	    $modeli = $conn->query("select Naziv, ObjekatID, BrojNovihKomentara from 3dpteam.objekat 
+          left join 3dpteam.korisnik on 3dpteam.objekat.KorisnikObjavioID = 3dpteam.korisnik.korisnik_id
+          left join 3dpteam.korisnikaccount on 3dpteam.korisnik.korisnikAccID = 3dpteam.korisnikaccount.korisnikAcc_id 
+          where 3dpteam.korisnikaccount.username = '".$_SESSION['Username']."';");
 	     
 	    if (!$modeli) 
 	    {
-	          $greska = $conn->errorInfo();
-	          print "SQL greška: " . $greska[2];
+	          $greska = $conn->error;
+	          print "SQL greška: " . $greska;
 	          exit();
      	}
      	else

@@ -27,6 +27,32 @@
     <script src="js/pozivniServis.js"></script>
     <script src="js/jquery-1.11.3.min.js"></script>
 
+    <script type="text/javascript">
+
+/*TESTNA METODA ZA PROVJERU RADA WEB SERVISA*/
+function dobavi()
+{
+    var ajax = new XMLHttpRequest();
+
+    ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200)
+        {
+
+          console.log(ajax.responseText);
+
+            //document.getElementById("brojTelefona").innerHTML = pozivniBrojDrzave + "/";
+        }
+            
+        if (ajax.readyState == 4 && ajax.status == 404)
+            alert("GREŠKA!!! Molimo pokušajte kasnije.");
+            
+    }
+    ajax.open("GET", "modeliAutoraWebServis.php?UsernameAutora=kenan&BrojModela=2", true);
+    ajax.send();
+}
+
+</script>
+
         <!-- Izmjestiti u novi js fajl -->
     <script type="text/javascript">
     
@@ -52,7 +78,6 @@
 <body>
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
-
             <div class="navbar-header">
                 <div class=" navbar-brand  stage" >
                   <div class=" cube" >
@@ -93,7 +118,6 @@
         
     </nav>
     <div class="header-main">
-      
 
         <div class="header-sadrzaj" >
 
@@ -201,6 +225,7 @@
         <div id="filterLabel">Prikaz modela:</div>
             <div id="modelFilter">
                 <ul id="ulFilter">
+                    <!-- <li>Pozovi Servis<button type="button" onclick="dobavi()" /></li> --> <!-- TESTNO DGUME ZA SERVIS --> 
                     <li onclick="filterModels(this, 1)">Svi modeli</li>
                     <li onclick="filterModels(this, 2)">Današnji modeli</li>
                     <li onclick="filterModels(this, 3)">Modeli ove sedmice</li>
