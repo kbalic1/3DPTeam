@@ -44,7 +44,7 @@
          $_SESSION['logon'] = true;
       }
 
-      header("location: index.php"); // Redirecting To Other Page
+      header("location: index.php"); 
       die();
   
   
