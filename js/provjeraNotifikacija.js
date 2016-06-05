@@ -76,6 +76,7 @@ $( document ).ready(function() {
 
 			  	for(var i = 0; i < nizObjekataSaKomentarima.length; i++)
 			  	{
+			  		console.log("PROVJERA");
 			  		//console.log("objekat: " + nizObjekataSaKomentarima[i].Naziv);
 
 

@@ -158,9 +158,7 @@ if(isset($_REQUEST['spasiPassword']))
 </div>
 
 <div class="container bootstrap snippet">
-    <div class="row">
-
-        
+    <div class="row">  
 
         <div class="col-sm-10"><h1><?php echo $_SESSION['Username']; ?></h1></div>
 
@@ -463,13 +461,7 @@ if(isset($_REQUEST['spasiPassword']))
 
 
 </body>
-
-
-
-
-
-
-
+  
 
 </script>
 
