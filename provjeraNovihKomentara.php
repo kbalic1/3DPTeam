@@ -7,8 +7,44 @@
 		$statusna = "logovan";
 		require_once("config.php");
     	mysqli_real_query($conn, "set names utf8;");
+
+
+          $usernameUsera=$_SESSION['Username'];
+
+
+            $sql= "SELECT  `korisnikAcc_id` 
+            FROM  `korisnikaccount` 
+            WHERE  `username` =  '$usernameUsera'";
+            $result=$conn->query($sql);
+
+
+            if ($result->num_rows > 0) {
+               
+                while($row = $result->fetch_assoc()) {
+                    $IDUsera= $row["korisnikAcc_id"];
+                }
+            }
+
+
+
+            $sql ="SELECT  `korisnik_id`
+            FROM `korisnik` 
+            WHERE `korisnikAccID` = '$IDUsera' AND Aktivan = 1 ";
+
+            $result1=$conn->query($sql);
+
+
+            if ($result1->num_rows > 0) {
+               
+                while($row = $result1->fetch_assoc()) {
+                    $korisnikovIDUsera=$row["korisnik_id"];
+                }
+
+            }
+
+
      
-	    $modeli = $conn->query("select Naziv, ObjekatID, BrojNovihKomentara from 3dpteam.objekat where KorisnikObjavioID = 3;");
+	    $modeli = $conn->query("select Naziv, ObjekatID, BrojNovihKomentara from objekat where KorisnikObjavioID = '$korisnikovIDUsera';");
 	     
 	    if (!$modeli) 
 	    {

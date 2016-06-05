@@ -50,6 +50,33 @@
 </head>
 
 <body>
+
+    <?php require_once("config.php"); ?>
+
+      <?php 
+
+    $rola = 0;
+
+    if(isset( $_SESSION["Username"])) {
+
+    $usernameZaRolu = $_SESSION["Username"];
+    $sql = "SELECT rolaID from korisnikaccount where username= '$usernameZaRolu'";
+
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+   
+    while($row = $result->fetch_assoc()) {
+        $rola= $row["rolaID"];
+            }
+
+        }
+
+    }
+
+
+    ?>
+
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
 
@@ -73,19 +100,58 @@
                 
                 <a class="navbar-brand page-scroll" href="index.php">3D Platforma</a>
             </div>
+           
 
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                  
-                    <li>
-                        <a class="page-scroll" href="signup.php">Sign Up</a>
+             
+                    <?php
+
+                         if(!isset($_SESSION['Username'])) {
+                           
+                        print(" <li>
+                        <a class='page-scroll' href='signup.php'>SignUp</a>
                     </li>
+                    ");
+                            }
+
+                           
+                           
+
+                     ?>
+                    
                     <li>
                         <a class="page-scroll" href="tableAndLinks.php">Info</a>
                     </li>
                     <li>
                         <a class="page-scroll" href="kontakt.php">Kontakt</a>
                     </li>
+                       <?php
+
+                         if(isset($_SESSION['Username'])) {
+                            $username=$_SESSION['Username'];
+                        print " <li  id='tdp_border' >";
+                       
+                            if($rola==0) {
+                      print" <a class='username page-scroll' href='indexLogovan.php'>" .$_SESSION['Username']."</a>";
+                         }     
+                      else{
+
+                             print" <a class='username page-scroll' href='admin.php'>" .$_SESSION['Username']."</a>";
+                      }
+                        print "</li>
+
+                        <li>
+                        <a class='page-scroll' href='logout.php'>LogOut</a>
+                        </li>
+                    ";
+                            }
+
+                           
+                     ?>
+                    
+                    
+
                 </ul>
             </div>
            
@@ -100,12 +166,16 @@
               <div class="wellcomeModel" id="wellcomeModelDiv"> </div>
               <div class="infoDiv">
 
+                <?php if(!isset($_SESSION["logon"])) { ?>
+
                  <p class="loginTekst">Prijavi se 3DP računom</p>
                  <button  id="login" class="btn btn-primary btn-xl page-scroll" data-toggle="modal" data-target="#myModal" >Prijavi se!</button>
                  <br/>
                  <p>ILI</p>
                   <a href="signup.php" id="signup" class="btn btn-primary btn-xl page-scroll">Registruj se!</a>
                   <p class="signUptekst">na najveću domaću 3D web platformu</p>
+
+                  <?php } ?>
 
              </div>
               <hr class="ispod"/>
@@ -309,5 +379,5 @@
             }
         } 
 
-        session_destroy();
+       // session_destroy();
 ?>

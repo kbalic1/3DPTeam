@@ -134,6 +134,32 @@
                 $autorKomentaraID=0;
             }
 
+
+    $sql ="SELECT  `BrojNovihKomentara`
+    FROM `objekat` 
+    WHERE `ObjekatID` = '$idObjekta' ";
+
+    $result1=$conn->query($sql);
+
+
+    if ($result1->num_rows > 0) {
+       
+        while($row = $result1->fetch_assoc()) {
+            
+            $brNovihKoment=$row["BrojNovihKomentara"];
+          
+
+        }
+    }
+
+        $brNovihKoment= $brNovihKoment+1;
+
+        $sql="UPDATE `objekat`
+        SET `BrojNovihKomentara`=\"$brNovihKoment\"
+        WHERE `ObjekatID` = $idObjekta";
+
+     $conn->query($sql);
+
          $sql = "INSERT INTO komentar (ObjekatID,Tekst,AutorID,Vrijeme,Aktivan)
         VALUES ('$idObjekta', '$komentar','$autorKomentaraID','$datum' ,1)";
 
@@ -201,7 +227,51 @@
        
     }
 
-    $brNovihKom=0;
+    if(isset($_SESSION['Username']))
+         {
+
+             $usernameUsera=$_SESSION['Username'];
+
+
+            $sql= "SELECT  `korisnikAcc_id` 
+            FROM  `korisnikaccount` 
+            WHERE  `username` =  '$usernameUsera'";
+            $result=$conn->query($sql);
+
+
+            if ($result->num_rows > 0) {
+               
+                while($row = $result->fetch_assoc()) {
+                    $IDUsera= $row["korisnikAcc_id"];
+                }
+            }
+
+
+
+            $sql ="SELECT  `korisnik_id`
+            FROM `korisnik` 
+            WHERE `korisnikAccID` = '$IDUsera' AND Aktivan = 1 ";
+
+            $result1=$conn->query($sql);
+
+
+            if ($result1->num_rows > 0) {
+               
+                while($row = $result1->fetch_assoc()) {
+                    $korisnikovIDUsera=$row["korisnik_id"];
+                }
+
+            }
+
+            if($korisnikovIDUsera==$korisnikID)
+            {
+                $brNovihKom=0;
+            }
+
+
+         }
+
+
 
     $brPregleda= $brPregleda+1;
 

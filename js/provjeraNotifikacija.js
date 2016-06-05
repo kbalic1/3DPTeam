@@ -46,7 +46,7 @@ if(sessionStorage.getItem('ukinuto') != null)
 
 function profilObjekta(ID)
 {
-	window.location = "/kontakt.php?ID=" + ID;
+	window.location = "pregledModela.php?id=" + ID;
 }
 
 function ukini(ID)
@@ -92,7 +92,7 @@ $( document ).ready(function() {
 			  		//notifikacija.className += ' notifikacijaStil';
 
 			  		notifikacija.innerHTML = "<div class='alert alert-info fade in'>" +
-			  			"<a href='#' onclick='profilObjekta("+nizObjekataSaKomentarima[i].ObjekatID+");'>" + nizObjekataSaKomentarima[i].Naziv + "</a>" +
+			  			"<a href='pregledModela.php?id="+nizObjekataSaKomentarima[i].ObjekatID+"' >" + nizObjekataSaKomentarima[i].Naziv + "</a>" +
 					    "<a href='#' onclick='ukini("+nizObjekataSaKomentarima[i].ObjekatID+");' class='close' data-dismiss='alert' aria-label='close'>&times;</a><br />" + 
 					    " Imate " + nizObjekataSaKomentarima[i].BrojNovihKomentara +  
 					    " novih komentara za model</div> "; 

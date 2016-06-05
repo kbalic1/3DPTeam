@@ -432,7 +432,7 @@ if(isset($_REQUEST['spasiPassword']))
 
                           <textarea id='opisModela' name='opisModela' class='form-control tdp_opis' rows='3'></textarea>
 
-                           <input type="checkbox" name="mogucnostKomentara" id="mogucnostKomentara" value="">
+                           <input type="checkbox" name="mogucnostKomentara" id="mogucnostKomentara" value="" checked>
                        
                         <input type="submit" name="submit" id="submit" value="Objavi" class="btn btn-primary centered tdp_button_margin ">
                     
