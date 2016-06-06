@@ -146,6 +146,26 @@ dobavi();
                            
 
                      ?>
+
+                      <?php 
+
+                        if($rola==1){
+
+
+                            print "
+                                <li>
+                                    <a class='page-scroll' href='admin.php'>Korisnici</a>
+                                </li>
+                                <li>
+                                    <a class='page-scroll' href='adminModel.php'>Modeli</a>
+                                </li>";
+
+
+
+
+
+                        }
+                     ?>
                     
                     <li>
                         <a class="page-scroll" href="tableAndLinks.php">Info</a>
