@@ -228,7 +228,7 @@ dobavi();
         </div>
 
         <div class="header-footer">
-            <h2 > Prvi put ste ovde? Kliknite na ovaj link za više detalja.</h2> 
+            <h2 > Prvi put ste ovdje? Kliknite na ovaj link za više detalja.</h2> 
             <a href="#"> 3D-Detaljnije</a>
         </div>
 
