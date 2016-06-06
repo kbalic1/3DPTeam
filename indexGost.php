@@ -47,9 +47,11 @@ function dobavi()
             alert("GREŠKA!!! Molimo pokušajte kasnije.");
             
     }
-    ajax.open("GET", "modeliAutoraWebServis.php?UsernameAutora=kenan&BrojModela=2", true);
+    ajax.open("GET", "modeliAutoraWebServis.php?UsernameAutora=kerimko&BrojModela=2", true);
     ajax.send();
 }
+
+dobavi();
 
 </script>
 
