@@ -361,6 +361,48 @@
         </div>
 
               <hr class="ispod"/>
+
+              
+            <input id="idObjekta" value = '<?php echo $id?>' hidden> 
+            
+            <?php  
+                    $rola = 0;
+
+                        if(isset( $_SESSION["Username"])) {
+
+                        $usernameZaRolu = $_SESSION["Username"];
+                        $sql = "SELECT rolaID from korisnikaccount where username= '$usernameZaRolu'";
+
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                       
+                        while($row = $result->fetch_assoc()) {
+                            $rola= $row["rolaID"];
+                                }
+
+                            }
+
+                        }
+
+                        if($rola == 1)
+                        {
+
+                            if(isset($_GET["id"]))
+                            {
+                                $id = $_GET['id'];
+                                
+                            }
+
+                            print("<div class='mogucnostKomentarsianja'>");
+                            print("<label>Mogućnost komentarisanja: </label>");
+                            print("<input type='checkbox' name='mogucnostKomentaraChkb' id='mogucnostKomentaraChkb' value='' />");
+                            print("<input style='width:5%; margin-left:10px;' onclick='omoguciKomentare($id)' class='btn btn-sm btn-primary' type='button' value='Spasi' />");
+                            print("</div>");
+                        }
+
+
+            ?>
         
             <div class="komentariIPitanja" >
 
@@ -470,6 +512,26 @@
         }
       
     }
+
+       function omoguciKomentare(idObjekta)
+    {
+        var chkbKomentarisanje = document.getElementById("mogucnostKomentaraChkb");
+        var moguce = chkbKomentarisanje.checked;
+
+        var objekadID = idObjekta;
+
+        $.ajax({
+              method: "GET",
+              url: "mogucnostKomentarisanja.php",
+              contentType: "application/json",
+              data: { mogucnost: moguce, id: objekadID }
+            })
+        .done(function(odgovor)
+        {
+            alert(odgovor);
+        })
+    }
+
 
 
 

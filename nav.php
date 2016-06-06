@@ -65,6 +65,26 @@
                            
 
                      ?>
+
+                     <?php 
+
+                        if($rola==1){
+
+
+                            print "
+                                <li>
+                                    <a class='page-scroll' href='admin.php'>Korisnici</a>
+                                </li>
+                                <li>
+                                    <a class='page-scroll' href='adminModel.php'>Modeli</a>
+                                </li>";
+
+
+
+
+
+                        }
+                     ?>
                     
                     <li>
                         <a class="page-scroll" href="tableAndLinks.php">Info</a>
@@ -84,8 +104,11 @@
                       else{
 
                              print" <a class='username page-scroll' href='admin.php'>" .$_SESSION['Username']."</a>";
+
                       }
                         print "</li>
+
+
 
                         <li>
                         <a class='page-scroll' href='logout.php'>LogOut</a>

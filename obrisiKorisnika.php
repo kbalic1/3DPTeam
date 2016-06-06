@@ -7,6 +7,25 @@ session_start();
 
 	$id=$_REQUEST["id"];
 
+   if(isset( $_SESSION["Username"])) {
+
+    $rola = 0;
+
+    $usernameZaRolu = $_SESSION["Username"];
+    $sql = "SELECT rolaID from korisnikaccount where username= '$usernameZaRolu'";
+
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+   
+    while($row = $result->fetch_assoc()) {
+        $rola= $row["rolaID"];
+        }
+    }
+
+  }
+
+  if($rola==1){
   
 $ID=0;
 
@@ -32,7 +51,9 @@ $sql="UPDATE `korisnikaccount`
         where korisnikAcc_id='$ID'";
 
 
-$conn->query($sql)
+$conn->query($sql);
+
+}
 
 
 
