@@ -4,7 +4,7 @@
 $servername = "localhost";
 $dbname = "3dpteam";
 $username = "root";
-$password = "Sitim12";
+$password = "";
 
 /*
 $servername = "127.6.241.130";

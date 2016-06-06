@@ -47,9 +47,11 @@ function dobavi()
             alert("GREŠKA!!! Molimo pokušajte kasnije.");
             
     }
-    ajax.open("GET", "modeliAutoraWebServis.php?UsernameAutora=kenan&BrojModela=2", true);
+    ajax.open("GET", "modeliAutoraWebServis.php?UsernameAutora=kerimko&BrojModela=2", true);
     ajax.send();
 }
+
+dobavi();
 
 </script>
 
@@ -144,6 +146,26 @@ function dobavi()
                            
 
                      ?>
+
+                      <?php 
+
+                        if($rola==1){
+
+
+                            print "
+                                <li>
+                                    <a class='page-scroll' href='admin.php'>Korisnici</a>
+                                </li>
+                                <li>
+                                    <a class='page-scroll' href='adminModel.php'>Modeli</a>
+                                </li>";
+
+
+
+
+
+                        }
+                     ?>
                     
                     <li>
                         <a class="page-scroll" href="tableAndLinks.php">Info</a>
@@ -206,7 +228,7 @@ function dobavi()
         </div>
 
         <div class="header-footer">
-            <h2 > Prvi put ste ovde? Kliknite na ovaj link za više detalja.</h2> 
+            <h2 > Prvi put ste ovdje? Kliknite na ovaj link za više detalja.</h2> 
             <a href="#"> 3D-Detaljnije</a>
         </div>
 

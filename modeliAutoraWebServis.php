@@ -33,7 +33,7 @@ switch($method) {
         mysqli_real_query($conn, "set names utf8;");  
 
 $opt = array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION);
-$pdo = new PDO('mysql:dbname=3dpteam;host=localhost','root','Sitim12');
+$pdo = new PDO('mysql:dbname=3dpteam;host=localhost','root','');
 
 $pdo->setAttribute( PDO::ATTR_EMULATE_PREPARES, false );
 

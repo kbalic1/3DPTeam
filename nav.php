@@ -1,5 +1,27 @@
-    <?php /*session_start();*/ ?>
+    <?php session_start(); ?>
 
+    <?php 
+
+     if(isset( $_SESSION["Username"])) {
+
+    $rola = 0;
+
+    $usernameZaRolu = $_SESSION["Username"];
+    $sql = "SELECT rolaID from korisnikaccount where username= '$usernameZaRolu'";
+
+    $result = $conn->query($sql);
+
+    if ($result->num_rows > 0) {
+   
+    while($row = $result->fetch_assoc()) {
+        $rola= $row["rolaID"];
+    }
+}
+
+}
+
+
+    ?>
     <div id="navDiv" >
     <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
         <div class="container-fluid">
@@ -43,6 +65,26 @@
                            
 
                      ?>
+
+                     <?php 
+
+                        if($rola==1){
+
+
+                            print "
+                                <li>
+                                    <a class='page-scroll' href='admin.php'>Korisnici</a>
+                                </li>
+                                <li>
+                                    <a class='page-scroll' href='adminModel.php'>Modeli</a>
+                                </li>";
+
+
+
+
+
+                        }
+                     ?>
                     
                     <li>
                         <a class="page-scroll" href="tableAndLinks.php">Info</a>
@@ -54,15 +96,24 @@
 
                          if(isset($_SESSION['Username'])) {
                             $username=$_SESSION['Username'];
-                        print(" <li  id='tdp_border' >
+                           print " <li  id='tdp_border' >";
                        
-                       <a class='username page-scroll' href='indexLogovan.php'>" .$_SESSION['Username']."</a>
-                        </li>
+                            if($rola==0) {
+                      print" <a class='username page-scroll' href='indexLogovan.php'>" .$_SESSION['Username']."</a>";
+                         }     
+                      else{
+
+                             print" <a class='username page-scroll' href='admin.php'>" .$_SESSION['Username']."</a>";
+
+                      }
+                        print "</li>
+
+
 
                         <li>
                         <a class='page-scroll' href='logout.php'>LogOut</a>
                         </li>
-                    ");
+                    ";
                             }
 
                            

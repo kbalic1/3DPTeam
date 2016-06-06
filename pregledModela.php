@@ -372,10 +372,10 @@ print("<script> alert('EVO DOSO'); </script>");
         </div>
 
               <hr class="ispod"/>
-            
+          
             <input id="idObjekta" value = '<?php echo $id?>' hidden> 
-            
-            <?php  
+
+            <?php
                     $rola = 0;
 
                         if(isset( $_SESSION["Username"])) {
@@ -529,6 +529,7 @@ print("<script> alert('EVO DOSO'); </script>");
       
     }
 
+
     function omoguciKomentare(idObjekta)
     {
         var chkbKomentarisanje = document.getElementById("mogucnostKomentaraChkb");
@@ -536,10 +537,12 @@ print("<script> alert('EVO DOSO'); </script>");
 
         var objekatID = idObjekta;
 
+
         $.ajax({
               method: "GET",
               url: "mogucnostKomentarisanja.php",
               contentType: "application/json",
+
               data: { mogucnost: moguce, id: objekatID }
             })
         .done(function(odgovor)

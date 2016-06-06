@@ -32,7 +32,7 @@
 
  
 
-  $sql = "SELECT * from korisnikAccount where password='$passwordHash' AND username='$username'";
+  $sql = "SELECT * from korisnikAccount where password='$passwordHash' AND username='$username' AND Aktivan=1";
 
   $result=$conn->query($sql);
 
