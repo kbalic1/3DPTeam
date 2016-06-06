@@ -74,11 +74,20 @@ footer{
 	-moz-width:50%;
 }
 
+.mogucnostKomentarsianja
+{
+	margin-left:3%;
+}
+
+.btnRepliciraj, .mogucnostKomentarsianja label
+{
+	margin-right: 5px;
+}
+
 .komentariModelaDiv{
 
 	width: 70%;
 	-moz-width:70%;
-
 }
 
 .komentariIPitanja {

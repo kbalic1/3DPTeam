@@ -23,12 +23,6 @@
     <link rel="stylesheet" href="css/creative.css" type="text/css">
     <link rel="stylesheet" href="css/logo.css" type="text/css">
 
-  
-
-
- 
-  
-  
 </head>
 
 <body>
@@ -89,8 +83,7 @@
             <strong>Obavijest</strong> Uspjesno ste komentarisali na post.
             </div>';
 
-             header("Location:pregledModela.php?id=".$idObjekta);
-            //return;
+            header("Location: pregledModela.php?id=".$idObjekta);
 
         }
 
@@ -100,6 +93,8 @@
 
     if(isset($_REQUEST['komentarisi']))
     {
+print("<script> alert('EVO DOSO'); </script>");
+
          $komentar=$_REQUEST['komentar'];
 
          $datum = date("Y-m-d h:i:sa");
@@ -158,12 +153,24 @@
         SET `BrojNovihKomentara`=\"$brNovihKoment\"
         WHERE `ObjekatID` = $idObjekta";
 
-     $conn->query($sql);
+     $conn->query($sql);    
 
-         $sql = "INSERT INTO komentar (ObjekatID,Tekst,AutorID,Vrijeme,Aktivan)
-        VALUES ('$idObjekta', '$komentar','$autorKomentaraID','$datum' ,1)";
+     // NE možem mu jos uvijek nista
+     //session_start();
+        print("<script> console.log('$komentar'); </script>");
+         print("<script> console.log('$datum'); </script>");
+         print("<script> console.log('$username'); </script>");
+         print("<script> console.log('$idObjekta'); </script>");
+
+         $sql = "insert INTO 3dpteam.komentar ( ObjekatID, Tekst, AutorID, Vrijeme, Aktivan)
+        VALUES ('$idObjekta', '$komentar', 1 ,'$datum' , 1)";
+
+             /*    $sql = "insert INTO 3dpteam.komentar ( ObjekatID, Tekst, AutorID, Vrijeme, Aktivan)
+        VALUES (1, 'tesno', 1 ,'2015-06-05' ,1)";*/
 
         if ($conn->query($sql) === TRUE) {
+
+                print("<script> alert('KVERI DOBAR'); </script>");
 
             echo '<div class="alert alert-info text-center">
             <strong>Obavijest</strong> Uspjesno ste komentarisali na post.
@@ -171,6 +178,16 @@
 
             header("Location:pregledModela.php?id=".$idObjekta);
 
+        }
+        else
+        {
+            //$greska = $conn->error;
+
+            print("<script> alert(".mysqli_error ( $conn ).")); </script>");
+
+            //print("<script> alert('$greska'); </script>");
+
+           
         }
 
     }
@@ -328,12 +345,6 @@
       $putObj=$srcObj.".obj";
       $putMtl=$srcObj.".mtl";
 
-
-
-
-
-
-
     ?>
     
     <div id="putObj" hidden> <?php echo $putObj?></div>
@@ -355,17 +366,61 @@
 
           </ul> 
 
-                 
+                
 
              </div>
         </div>
 
               <hr class="ispod"/>
-        
+            
+            <input id="idObjekta" value = '<?php echo $id?>' hidden> 
+            
+            <?php  
+                    $rola = 0;
+
+                        if(isset( $_SESSION["Username"])) {
+
+                        $usernameZaRolu = $_SESSION["Username"];
+                        $sql = "SELECT rolaID from korisnikaccount where username= '$usernameZaRolu'";
+
+                        $result = $conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                       
+                        while($row = $result->fetch_assoc()) {
+                            $rola= $row["rolaID"];
+                                }
+
+                            }
+
+                        }
+
+                        if($rola == 1)
+                        {
+
+                            if(isset($_GET["id"]))
+                            {
+                                $id = $_GET['id'];
+                                
+                            }
+
+                            print("<div class='mogucnostKomentarsianja'>");
+                            print("<label>Mogućnost komentarisanja: </label>");
+                            
+                            print("<input type='checkbox' name='mogucnostKomentaraChkb' id='mogucnostKomentaraChkb' value=''");
+                            echo ($mogucnostKom==1 ? 'checked' : '');
+                            print(" />");
+                            
+                            print("<input style='width:5%; margin-left:10px;' onclick='omoguciKomentare($id)' class='btn btn-sm btn-primary' type='button' value='Spasi' />");
+                            print("</div>");
+                        }
+
+
+            ?>
+
             <div class="komentariIPitanja" >
 
-
-                    <div class="komentariModelaDiv">
+                <div class="komentariModelaDiv">
 
             <?php if($mogucnostKom==1) { ?>
 
@@ -384,16 +439,19 @@
 
                 <hr>
 
-          
+          <div id="sadrzajKomentari">
             <?php require_once('komentariPosta.php') ?>
-
+          </div>
             <?php 
                   } 
             else{
                        print "<lable> Komentari na ovom postu nisu omoguceni </label>";
+
             }
 
             ?>
+
+          
 
 
             </div>
@@ -471,10 +529,42 @@
       
     }
 
+    function omoguciKomentare(idObjekta)
+    {
+        var chkbKomentarisanje = document.getElementById("mogucnostKomentaraChkb");
+        var moguce = chkbKomentarisanje.checked;
 
+        var objekatID = idObjekta;
+
+        $.ajax({
+              method: "GET",
+              url: "mogucnostKomentarisanja.php",
+              contentType: "application/json",
+              data: { mogucnost: moguce, id: objekatID }
+            })
+        .done(function(odgovor)
+        {
+            window.location = "pregledModela.php?id=" + objekatID;
+        })
+    }
+
+    function obrisiKomentar(idKomentara)
+    {
+        var objekatID = document.getElementById("idObjekta").value;
+              
+        $.ajax({
+              method: "GET",
+              url: "obrisiKomentar.php",
+              contentType: "application/json",
+              data: { id: idKomentara }
+            })
+            .done(function(odgovor)
+            {
+                $("#sadrzajKomentari").load("komentariPosta.php?reload=true&objekatID=" + objekatID);
+            })
+    }
 
     </script>
 
 
 </html>
-

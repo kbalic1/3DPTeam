@@ -1,9 +1,19 @@
         <?php
 
-             $komentari = $conn->query("SELECT * FROM komentar WHERE Aktivan = 1 AND ObjekatID =".$id." ORDER BY Vrijeme ;");
+        if(isset($_REQUEST["reload"]))
+        {
+          require_once("config.php");
+
+          if(isset($_REQUEST["objekatID"]))
+          {
+              $id = $_REQUEST["objekatID"]; 
+          }
+        }
+
+      $komentari = $conn->query("SELECT * FROM komentar WHERE Aktivan = 1 AND ObjekatID =".$id." ORDER BY Vrijeme ;");
      if (!$komentari) {
-          $greska = $conn->errorInfo();
-          print "SQL greška: " . $greska[2];
+          $greska = $conn->error;
+          print "SQL greška: " . $greska;
           exit();
      }
 
@@ -63,7 +73,11 @@
                            print " <small>".$komentar["Vrijeme"]."</small>
                         </h4>"
                         .$komentar["Tekst"];
+
                         print "<button id='repliciraj".$komentar["Komentar_id"]."' name='repliciraj".$komentar["Komentar_id"]."' onclick='repliciraj(".$komentar["Komentar_id"].")' class='btn btn-primary pull-right tdp_repliciraj'>Repliciraj</button>";
+
+                        print "<button id='brisi".$komentar["Komentar_id"]."' name='brisi".$komentar["Komentar_id"]."' onclick='obrisiKomentar(".$komentar["Komentar_id"].")' class='btn btn-primary pull-right tdp_repliciraj btnRepliciraj'>Briši
+                        </button>";
 
                              if ($replike->num_rows > 0) {
                                   
@@ -86,7 +100,7 @@
 
 
                                  print   "<div class='media'>
-                                          <a class='pull-left' href='#''>
+                                          <a class='pull-left' href='#'>
                                               <img class='media-object' src='http://placehold.it/64x64' alt=''>
                                           </a>
                                           <div class='media-body'>
@@ -99,7 +113,7 @@
                                             print "<a href='profilKorisnika.php?username=".$usernameReplika."'>".$usernameReplika."</a>";
 
                                               
-                                             print"     <small>".$replika["Vrijeme"]."</small>
+                                             print"<small>".$replika["Vrijeme"]."</small>
                                               </h4>"
                                               .$replika["Tekst"]."
                                           </div>
@@ -132,12 +146,7 @@
                                           </div>
                                       </div>";
 
-
-                                       
-
-                     
-
-                        
+                                        
                 print    "</div>";
                 print    "</div>";
 
@@ -169,10 +178,6 @@ function repliciraj (id){
         dugmeOstaviRepliku.innerHTML="Repliciraj";
 
          }
-
-
-
-
 }
 
 </script>
