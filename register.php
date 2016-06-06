@@ -24,8 +24,8 @@ $password2_k=$_REQUEST['password2'];
 $passwordHash = hash(md5,$password1_k,false);
 
 
-$sql = "INSERT INTO korisnikaccount (username,password,rolaID)
-VALUES ('$username_k', '$passwordHash' ,1)";
+$sql = "INSERT INTO korisnikaccount (username,password,rolaID,Aktivan)
+VALUES ('$username_k', '$passwordHash' ,0,1)";
 
 
 if ($conn->query($sql) === TRUE) {

@@ -63,52 +63,88 @@
          
 
 
-          if(isset($_POST["spasiButton"]))
+          if(isset($_POST["submitNovi"]))
           {
 
               $ime=$_POST["ime"];
               $prezime=$_POST["prezime"];
-              $brojTel=$_POST["brojTelefona"];
+              $brojTel=$_POST["telefon"];
               $username=$_POST["username"];
               $password=$_POST["password"];
+              $email=$_POST["email"];
               $id=$_POST["id"];
 
 
               if($id==0)
-              {
+              {         
                       $passwordHash = hash(md5,$password,false);
 
-                        $upit = "INSERT INTO korisnik (Ime,Prezime,BrojTelefona,Username,Password,Admin)
-                  VALUES ('$ime', '$prezime','$brojTel' ,'$username', '$passwordHash',0)";
+                      $sql="INSERT INTO korisnikaccount (username, password, rolaID,Aktivan)
+                      VALUES('$username','$passwordHash',0,1)";
+
+                      $conn->query($sql);
+
+                      $sql="SELECT korisnikAcc_id from korisnikaccount where username = '$username'";
+                      $result=$conn->query($sql);
+
+                        if ($result->num_rows > 0) {
+                       
+                        while($row = $result->fetch_assoc()) {
+                            $korisnikAccID= $row["korisnikAcc_id"];
+                                }
+
+                            }
+
+                        $datum = date("Y.m.d");
+
+                        $sql = "INSERT INTO korisnik (ime,prezime,BrojTelefona,datum,mail,korisnikAccID,Aktivan)
+                  VALUES ('$ime', '$prezime','$brojTel' ,'$datum','$email', '$korisnikAccID',1)";
 
 
-
-
-                  if ($konekcija->query($upit) === TRUE) {
+                  if ( $conn->query($sql) === TRUE) {
                   header("location: admin.php");
                   } 
                }
                else{
 
+                        $sql="SELECT korisnikAccID from korisnik where korisnik_id='$id'";
+                        $result = $conn->query($sql);
+
+
+                        if ($result->num_rows > 0) {
+                         
+                          while($row = $result->fetch_assoc()) {
+                              $korisnikAccID= $row["korisnikAccID"];
+                          }
+                      }
+
                       if($password=="")
                       {
                      
 
-                        $upit = "UPDATE  korisnik
-                        SET Ime=\"$ime \", Prezime=\"$prezime \",BrojTelefona=\"$brojTel \",Username=\"$username \"
-                        where id='$id'";
+                        $upit = "UPDATE  korisnikaccount
+                        SET username=\"$username \"
+                        where korisnikAcc_id='$korisnikAccID'";
+
+
                       }
                       else
                       {
                           $passwordHash = hash(md5,$password,false);
-                            $upit = "UPDATE  korisnik
-                        SET Ime=\"$ime \", Prezime=\"$prezime \",BrojTelefona=\"$brojTel \",Username=\"$username \",Password=\"$passwordHash\"
-                        where id='$id'";
+                            $upit = "UPDATE  korisnikaccount
+                        SET username=\"$username \",password=\"$passwordHash\"
+                        where korisnikAcc_id='$korisnikAccID'";
 
                       }
 
 
-                  if ($konekcija->query($upit) === TRUE) {
+                    $conn->query($upit);
+
+                   $sql = "UPDATE  korisnik
+                        SET ime=\"$ime \", prezime=\"$prezime \",BrojTelefona=\"$brojTel \",mail=\"$email \"
+                        where korisnik_id='$id'";
+
+                  if ($conn->query($sql) === TRUE) {
                   header("location: admin.php");
                   } 
 
@@ -118,6 +154,9 @@
 
 
           }
+
+
+
 
 
     
@@ -172,8 +211,8 @@
 
     <?php 
 
-      $sql = "SELECT ime, prezime, korisnik_id, datum, BrojTelefona, ka.username as username from korisnik
-      left join korisnikaccount ka on korisnik.korisnikAccID = ka.korisnikAcc_id ";
+      $sql = "SELECT ime, prezime, korisnik_id, datum,mail, BrojTelefona, ka.username as username from korisnik
+      left join korisnikaccount ka on korisnik.korisnikAccID = ka.korisnikAcc_id where korisnik.Aktivan =1 ";
 
       $result = $conn->query($sql);
 
@@ -184,7 +223,8 @@
                           <th>ID</th>
                           <th>Ime</th>
                           <th>Prezime</th>
-                          <th>Datum rodjenja</th>
+                          <th>Email</th>
+                          <th>Datum registracije</th>
                           <th>Broj telefona</th>
                           <th>Username</th>
                           <th>Akcije</th>
@@ -196,13 +236,14 @@
 
 
                        print "<tr>
-                          <th scope='row'>".$row["korisnik_id"]."</th>
-                          <td>".$row["ime"]."</td>
-                          <td>".$row["prezime"]."</td>
-                          <td>".$row["datum"]."</td>
-                          <td>".$row["BrojTelefona"]." </td>
-                          <td>".$row["username"]." </td>
-                          <td> <a href='#' class='btn btn-info btn-sm'>
+                          <th scope='row' >".$row["korisnik_id"]."</th>
+                          <td id='ime".$row["korisnik_id"]."'>".$row["ime"]."</td>
+                          <td id='prezime".$row["korisnik_id"]."'>".$row["prezime"]."</td>
+                          <td id='email".$row["korisnik_id"]."'>".$row["mail"]."</td>
+                          <td id='datum".$row["korisnik_id"]."'>".$row["datum"]."</td>
+                          <td id='brojTelefona".$row["korisnik_id"]."'>".$row["BrojTelefona"]."</td>
+                          <td id='username".$row["korisnik_id"]."'>".$row["username"]."</td>
+                          <td > <a href='javascript:uredi(".$row["korisnik_id"].")' class='btn btn-info btn-sm'>
                                 <span class='glyphicon glyphicon-pencil'></span>  
                                 </a> 
                                 <a href='javascript:obrisi(".$row["korisnik_id"].")' class='btn btn-danger btn-sm'>
@@ -247,6 +288,8 @@
                
 
                     <div class="col-lg-4 col-lg-offset-4 text-center">
+
+                       <input name='id' type=text  placeholder='' value='0' id='id'  hidden/>
                         
                         <div class="form-group tdp_form_group">
                             <label >Ime</label>
@@ -262,16 +305,25 @@
                         <div class="form-group tdp_form_group">
                             <label >Prezime</label>
                             <div class="input-group">
-                                <input type="email" class="form-control" id="prezime" name="prezime" placeholder="Unesite prezime" >
+                                <input type="text" class="form-control" id="prezime" name="prezime" placeholder="Unesite prezime" >
                                  
                                 <span class="input-group-addon"></span>
                             </div>
                            
                         </div>  
+                          <div class="form-group tdp_form_group">
+                            <label >Email</label>
+                            <div class="input-group">
+                                <input type="text" class="form-control" id="email" name="email" placeholder="Unesite email" >
+                                 
+                                <span class="input-group-addon"></span>
+                            </div>
+                           
+                        </div>
                         <div class="form-group tdp_form_group">
                             <label >Broj telefona</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="telefon" name="telefon"  placeholder="Unesite broj telefona" >
+                                <input type="text" class="form-control" id="telefon" name="telefon"  placeholder="Unesite broj telefona" >
                                  
                                 <span class="input-group-addon"></span>
                             </div>
@@ -280,7 +332,16 @@
                         <div class="form-group tdp_form_group">
                             <label >Username</label>
                             <div class="input-group">
-                                <input type="password" class="form-control" id="username" name="username" placeholder="Unesite username"  >
+                                <input type="text" class="form-control" id="username" name="username" placeholder="Unesite username"  >
+                                 
+                                <span class="input-group-addon"></span>
+                            </div>
+                           
+                        </div>
+                         <div class="form-group tdp_form_group">
+                            <label >Password</label>
+                            <div class="input-group">
+                                <input type="password" class="form-control" id="password" name="password" placeholder="Unesite password"  >
                                  
                                 <span class="input-group-addon"></span>
                             </div>
@@ -288,7 +349,7 @@
                         </div>
                         <div  class="row">
                               <div class="col-md-4"></div>
-                              <input type="submit" name="submit" id="submit" value="Spasi" class="btn btn-primary btn-sm col-md-3 btn-pr-sirina ">
+                              <input type="submit" name="submitNovi" id="submitNovi" value="Spasi" class="btn btn-primary btn-sm col-md-3 btn-pr-sirina ">
                               <div class="col-md-1"></div>
                              <input type="submit" name="submit" id="submit" value="Poništi" class="btn btn-primary btn-sm col-md-3 btn-pr-sirina " onclick="javascript:hideForm()">
                        </div>
@@ -318,21 +379,26 @@
 
       var ime = document.getElementById("ime"+id);
       var prezime = document.getElementById("prezime"+id);
-      var brojTel = document.getElementById("brojTel"+id);
+      var brojTel = document.getElementById("brojTelefona"+id);
+      var email = document.getElementById("email"+id);
       var username = document.getElementById("username"+id);
-     // var password = document.getElementById("password"+id);
+      var password = document.getElementById("password"+id);
 
-      var imeInput = document.getElementById("ime");
-      var prezimeInput = document.getElementById("prezime");
-      var brojTelInput = document.getElementById("brojTelefona");
-      var usernameInput = document.getElementById("usernamee");
-      var idInput = document.getElementById("id");
+      var imeForma = document.getElementById("ime");
+      var prezimeForma = document.getElementById("prezime");
+      var brojTelForma = document.getElementById("telefon");
+      var emaiForma = document.getElementById("email");
+      var usernameForma = document.getElementById("username");
+      var idForma = document.getElementById("id");
 
-      imeInput.value=ime.textContent;
-      prezimeInput.value=prezime.textContent;
-      brojTelInput.value=brojTel.textContent;
-      usernameInput.value=username.textContent;
-      idInput.value=id;
+      imeForma.value=ime.innerHTML;
+      prezimeForma.value=prezime.innerHTML;
+      brojTelForma.value=brojTel.innerHTML;
+      usernameForma.value=username.innerHTML;
+      emaiForma.value=email.innerHTML;
+
+      prikaziFormu();
+      idForma.value=id;
 
       
 
@@ -375,15 +441,15 @@
       var prezimeInput = document.getElementById("prezime");
       var brojTelInput = document.getElementById("telefon");
       var usernameInput = document.getElementById("username");
-    /*  var idInput = document.getElementById("id");
-      var password = document.getElementById("password");*/
+      var idInput = document.getElementById("id");
+      var password = document.getElementById("password");
 
       imeInput.value="";
       prezimeInput.value="";
       brojTelInput.value="";
       usernameInput.value="";
-     /* password.value="";
-      idInput.value=0;*/
+      password.value="";
+      idInput.value=0;
 
       var forma = document.getElementById("formaUnos");
       forma.hidden=true;

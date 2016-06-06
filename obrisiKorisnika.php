@@ -21,21 +21,18 @@ $ID=0;
     }
 }
 
-	  $sql="DELETE from korisnik where korisnik_id='$id'";
+$sql="UPDATE `korisnik`
+        SET `Aktivan`= \"0\"
+        where korisnik_id='$id'";
 
-      if ($conn->query($sql) === TRUE) {
-          
-           
-          
-        }
+$conn->query($sql);
 
-         $sql="DELETE from korisnikaccount where korisnikAcc_id='$ID'";
+$sql="UPDATE `korisnikaccount`
+        SET `Aktivan`= \"0\"
+        where korisnikAcc_id='$ID'";
 
-      if ($conn->query($sql) === TRUE) {
-          
-          // header("location: admin.php");
-          
-        }
+
+$conn->query($sql)
 
 
 

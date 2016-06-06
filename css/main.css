@@ -233,6 +233,12 @@ padding: 3%;
 	width: 25%!important;
 }
 
+.labelPrikaz {
+
+	text-decoration: none;
+	font-weight: none !important;
+}
+
 
 #signup {
 
